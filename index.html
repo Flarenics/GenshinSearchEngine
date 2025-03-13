@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <!-- Flarenics Logo -->
+        <div class="logo-container">
+            <img class="logo" src="https://genshin.jmp.blue/characters/hu-tao/icon" id="FlarenicsIcon" alt="Flarenics Icon">
+        </div>
+            <!-- funny button -->
+            <button class="button" data-text="Flarenics">
+                <span class="actual-text">&nbsp;Flarenics&nbsp;</span>
+                <span aria-hidden="true" class="hover-text">&nbsp;Flarenics&nbsp;</span>
+            </button>
+            <!-- Genshin Search Engine Title -->
+        <h1 class="mainTitle" id="genshinSearchEngine">Genshin Search Engine</h1>
+        <!-- Github Button -->
+        <a class="cta" href="#"><button id="githubButton">
+            <img src="images\GithubLogo.png" alt="github logo" id="githubLogo">
+        </button></a>
+    </header>
+    <!-- Character/Nation/Artifact Selector -->
+    <select name="searchPoints" id="searchPoints"  onchange="this.form.submit();">
+        <option id="options" value="Character">Character</option>
+        <option id="options" value="Nation">Nation</option>
+        <option id="options" value="Artifact">Artifact</option>
+    </select>
+
+    <input type="text" id="characterName" placeholder="Enter name">
+    <button onclick="fetchInfo()">Search</button><br>
+    <div class="outputImages">
+        <img src="images\cardPlaceholder.png" alt="" id="characterCard">
+        <img src="images\splashPlaceholder.png" alt="" id="characterSplash">
+        <img src="images\iconPlaceholder.png" alt="" id="characterIcon">
+
+        <img src="" alt="" id="nationIcon">
+    </div>
+    <div class="outputText">
+        <h1 id="charName"></h1>
+        <h1 id="charTitle"></h1>
+        <h1 id="charDesc"></h1>
+
+        <h1 id="nationName"></h1>
+        <h1 id="nationElement"></h1>
+        <h1 id="nationLeader"></h1>
+    </div>
+<script src="app.js"></script>
+</body>
+</html>
