@@ -3,6 +3,27 @@ async function fetchInfo(){
     const userInput = document.getElementById("searchPoints").value.toLocaleLowerCase();
     console.log(userInput);
 
+    const imgElementSplash = document.getElementById("characterSplash");
+    const imgElementCard = document.getElementById("characterCard");
+    const imgElementIcon = document.getElementById("characterIcon");
+    imgElementSplash.style.display = "none";
+    imgElementCard.style.display = "none";
+    imgElementIcon.style.display = "none";
+    const charName = document.getElementById("charName");
+    const charTitle = document.getElementById("charTitle");
+    const charDesc = document.getElementById("charDesc");
+    charName.textContent = ""
+    charTitle.textContent = ""
+    charDesc.textContent = ""
+    const nationName = document.getElementById("nationName");
+    const nationElement = document.getElementById("nationElement");
+    const nationLeader = document.getElementById("nationLeader");
+    const imgNationIcon = document.getElementById("nationIcon");
+    imgNationIcon.style.display = "none";
+    nationName.textContent = ""
+    nationElement.textContent = ""
+    nationLeader.textContent = ""
+
     if (userInput == "character"){
         try{
             const characterName = document.getElementById("characterName").value.toLocaleLowerCase();
@@ -52,13 +73,17 @@ async function fetchInfo(){
             const data = await response.json();
             const nationIcon = (`https://genshin.jmp.blue/nations/${characterName}/icon`);
     
+            const imgElementSplash = document.getElementById("characterSplash");
+            const imgElementCard = document.getElementById("characterCard");
+            const imgElementIcon = document.getElementById("characterIcon");
+
             const nationName = document.getElementById("nationName");
             const nationElement = document.getElementById("nationElement");
             const nationLeader = document.getElementById("nationLeader");
-            const imgElementIcon = document.getElementById("nationIcon");
+            const imgNationIcon = document.getElementById("nationIcon");
     
-            imgElementIcon.src = nationIcon;
-            imgElementIcon.style.display = "block";
+            imgNationIcon.src = nationIcon;
+            imgNationIcon.style.display = "block";
             nationName.textContent = data.name
             nationElement.textContent = data.element
             nationLeader.textContent = data.archon + ", " + data.controllingEntity
