@@ -21,7 +21,7 @@
             <!-- Genshin Search Engine Title -->
         <h1 class="mainTitle" id="genshinSearchEngine">Genshin Search Engine</h1>
         <!-- Github Button -->
-        <a class="cta" href="#"><button id="githubButton">
+        <a class="cta" href="https://github.com/Flarenics/GenshinSearchEngine/" target="_blank"><button id="githubButton">
             <img src="images\GithubLogo.png" alt="github logo" id="githubLogo">
         </button></a>
     </header>
@@ -36,7 +36,7 @@
     <div class="outputImages">
     <div class="outputImagesChar">
         <img src="images\cardPlaceholder.png" alt="" id="characterCard" style="display: block;">
-        <img src="images\splashPlaceholder.png" alt="" id="characterSplash" style="display: block;">
+        <img src="images\splashPlaceholder.png" alt="" id="characterSplash" style="display: block;" crossorigin>
         <img src="images\iconPlaceholder.png" alt="" id="characterIcon" style="display: block;">
     </div>
     <div class="outputImagesArt">
@@ -49,7 +49,9 @@
 </div>
     <div class="outputText">
         <div class="characterOutputText">
-            <h1 id="charName"></h1>
+            <div class="charNameWrapper">
+                <h1 id="charName"></h1>
+            </div>
             <h1 id="charTitle"></h1>
             <h1 id="charDesc"></h1>
         </div>

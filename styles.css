@@ -195,8 +195,8 @@ header {
   height: auto;
   border-radius: 20px;
   border-style: inset;
-  border-color: rgb(0, 0, 0);
-  border-width: 4px;
+  border-color: rgb(48, 15, 100);
+  border-width: px;
   box-shadow: 15px 15px 0px black;
   opacity: 1;
 }
@@ -275,4 +275,29 @@ header {
 #circletTitle, #flowerTitle, #gobletTitle, #plumeTitle, #sandsTitle {
   padding-left: 95px;
   padding-right: 95px;
+}
+
+#charName, #charTitle, #charDesc {
+  display: flex;
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.charNameWrapper {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+#charName {
+  display: flex;
+  font-weight: 800;
+  justify-content: center;
+  text-decoration: underline;
+  font-size: 52px;
+  padding: 15px;
+  border-radius: 12px;
+  background-color: #0000008f;
+  color: white;
+  filter: saturate(10) drop-shadow(0px 0px 24px rgb(207, 85, 255));
 }

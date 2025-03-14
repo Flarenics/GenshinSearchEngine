@@ -129,3 +129,71 @@ async function fetchInfo(){
         console.log('now how did you manage that?')
     }
 }
+
+function getColor(imageElem, ratio) {
+    const canvas = document.createElement('canvas');
+
+    let width = canvas.width = imageElem.width;
+    let height = canvas.height = imageElem.height;
+
+    const context = canvas.getContext('2d');
+    context.drawImage(imageElem, 0, 0);
+
+    let data, length;
+    let i = -4, count = 0;
+
+    try {
+        data = context.getImageData(0, 0, width, height);
+        length = data.data.length;
+    } catch (err) {
+        console.error(err);
+        return {
+            R: 0,
+            G: 0,
+            B: 0
+        };
+    }
+
+    let R, G, B;
+    R = G = B = 0;
+
+    while ((i += ratio * 4) < length) {
+        ++count;
+
+        R += data.data[i];
+        G += data.data[i + 1];
+        B += data.data[i + 2];
+    }
+
+    R = ~~(R / count);
+    G = ~~(G / count);
+    B = ~~(B / count);
+
+    return {
+        R,
+        G,
+        B
+    };
+}
+
+const image = document.getElementById("characterSplash");
+image.onload = function() {
+    const { R, G, B } = getColor(image,4);
+
+    const changeMe = document.getElementById("charName");
+    const changeMe2 = document.getElementById("characterSplash");
+    const changeMe3 = document.getElementById("characterCard");
+    const changeMe4 = document.getElementById("characterIcon");
+
+
+    changeMe.style.color = `rgb(${R},${G},${B})`;
+    changeMe.style.filter = `saturate(8) brightness(1.2) drop-shadow(0px 0px 32px rgba(${R},${G},${B}, 0.8))`;
+
+    changeMe2.style.boxShadow = `0px 0px 64px rgba(${R},${G},${B}, 1)`;
+    changeMe3.style.boxShadow = `0px 0px 64px rgba(${R},${G},${B}, 1)`;
+    changeMe4.style.boxShadow = `0px 0px 64px rgba(${R},${G},${B}, 1)`;
+
+    changeMe2.style.borderColor = `rgba(${R},${G},${B}, 1)`;
+    changeMe3.style.borderColor = `rgba(${R},${G},${B}, 1)`;
+    changeMe4.style.borderColor = `rgba(${R},${G},${B}, 1)`;
+};
