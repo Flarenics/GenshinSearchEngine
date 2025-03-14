@@ -33,16 +33,17 @@
         </div>
     </header>
 
+    <div id="userInput">
+        <!-- Character/Nation/Artifact Selector -->
+        <select name="searchPoints" id="searchPoints"  onchange="this.form.submit();">
+            <option id="options" value="Character">Character</option>
+            <option id="options" value="Artifact">Artifact</option>
+        </select>
 
-    <!-- Character/Nation/Artifact Selector -->
-    <select name="searchPoints" id="searchPoints"  onchange="this.form.submit();">
-        <option id="options" value="Character">Character</option>
-        <option id="options" value="Artifact">Artifact</option>
-    </select>
-
-    <input type="text" id="characterName" placeholder="Enter name" class="search" onkeypress="search(event)">
-    <button onclick="fetchInfo()">Search</button><br>
-
+        <input type="text" id="characterName" placeholder="Enter name" class="search" onkeypress="search(event)">
+        <button onclick="fetchInfo()">Search</button><br>
+    </div>
+    
     <div class="outputImages">
         <img src="images\cardPlaceholder.png" alt="" id="characterCard" style="display: block;">
         <img src="images\splashPlaceholder.png" alt="" id="characterSplash" style="display: block;" crossorigin>

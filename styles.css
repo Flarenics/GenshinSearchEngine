@@ -1,8 +1,11 @@
+body {
+  background-color: #22223B;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #22223B;
   color: #E3E4DB;
 }
 
@@ -24,20 +27,23 @@ header {
   background-color: #303030;
   width: 100%;
   align-items: center;
-  border-radius: 8px;
-  border: solid black;
+  /* border-radius: 8px; */
+  border-bottom: 3px solid black;
   gap: 1em;
-  height: 10vh;
+  height: 84px;
+  padding: 8px 64px 8px 64px;
 }
 
 .ft1 {
   flex: 1;
   display: flex;
+  background-color: #303030;
 }
 
 .ft3 {
   flex: 1;
   display: flex;
+  background-color: #303030;
 }
 
 nav, .cta {
@@ -168,13 +174,9 @@ img {
 }
 
 #githubLogo {
-  max-width: 64px;
-  background-color: rgb(29, 29, 29);
+  max-height: 36px;
 }
 
-#githubLogo:hover {
-  background-color: rgba(29, 29, 29, 0.8);
-}
 
 .mainTitle {
   display: flex;
@@ -237,21 +239,53 @@ img {
   border: 1px;
 }
 
+#userInput {
+  display: flex;
+  padding: 16px 0px 16px 0px;
+}
+
+#userInput button {
+  margin-right: auto;
+  border-radius: 100px;
+}
+
+#searchPoints {
+  background-color: #171728;
+  border: none;
+  padding: 8px 16px 8px 16px;
+  border-radius: 100px;
+  margin-left: auto;
+  margin-right: 16px;
+}
+
+#characterName {
+  background-color: #171728;
+  border: none;
+  padding: 8px 16px 8px 16px;
+  border-radius: 100px;
+  margin-right: 16px;
+}
+
+#characterName:hover {
+  border: none;
+  outline: none;
+}
+
 #options {
   color: white;
   font-size: medium;
-  background-color: #000000;
 }
 
 #genshinSearchEngine {
   display: flex;
   justify-content: center;
-  left: 420px;
-  border-radius: 8px;
-  width: 420px;
-  height: 40px; 
-  background-color: rgb(39, 39, 39);
-  filter: drop-shadow(0px 0px 32px  rgb(71, 71, 71));
+  border-radius: 21px;
+  width: auto;
+  height: 42px; 
+  background-color: rgb(32, 32, 32);
+  padding: 0px 48px 0px 48px;
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* filter: drop-shadow(0px 0px 32px  rgb(71, 71, 71)); */
 }
 
 .artifactTitles {
