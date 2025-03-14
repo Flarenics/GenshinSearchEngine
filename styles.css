@@ -1,5 +1,5 @@
 body {
-  background-color: #22223B;
+  background-color: #1C1719;
 }
 
 * {
@@ -23,43 +23,73 @@ button {
 }
 
 header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
   display: flex;
-  background-color: #303030;
+  background-color: #22223B;
   width: 100%;
   align-items: center;
-  /* border-radius: 8px; */
-  border-bottom: 3px solid black;
   gap: 1em;
-  height: 84px;
+  height: 72px;
   padding: 8px 64px 8px 64px;
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+header.headerSmaller {
+  height: 48px;
+}
+
+header.headerSmaller .logo {
+  width: 33px
+}
+
+header.headerSmaller .flarenics {
+  font-size: 16px;
+  min-width: 126px;
+  --border-right: 3px;
+}
+
+header.headerSmaller #githubLogo {
+  max-height: 24px;
+}
+
+header.headerSmaller button {
+  padding: 4px 16px;
+  border-radius: 6px;
+}
+
+header.headerSmaller #genshinSearchEngine {
+  font-size: 20px;
+  padding: 0px 36px 0px 36px;
+  height: 32px;
 }
 
 .ft1 {
   flex: 1;
   display: flex;
-  background-color: #303030;
+  background-color: #22223B;
+  max-height: 100%;
 }
 
 .ft3 {
   flex: 1;
   display: flex;
-  background-color: #303030;
+  background-color: #22223B;
+  max-height: 100%;
 }
 
-nav, .cta {
+.cta {
   margin-left: auto;
-  display: flex;
   align-items: center;
-  background-color: #303030;
 }
 
 .logo {
   cursor: pointer;
-  margin-right: 10px;
-  width: 64px;
-  height: 64px;
-  border-radius: 32px;
-  background-color: rgb(48, 48, 48, 1);
+  width: 53px;
+  max-height: 100%;
+  border-radius: 100px;
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .logo-container {
@@ -108,11 +138,11 @@ button:hover {
 }
 
 /* === Flarenics Button Animation (Final, Perfectly Sized Version) === */
-.button {
+.flarenics {
   --border-right: 4px; /* Slightly smaller border */
   --text-stroke-color: rgba(255,255,255,0.6);
-  --animation-color: #ff5715;
-  --fs-size: 1.5em; /* Reduce font size for better fit */
+  --animation-color: #FF6532;
+  --fs-size: 24px; /* Reduce font size for better fit */
   border-radius: 0px;
   letter-spacing: 2px; /* Slightly smaller spacing */
   text-decoration: none;
@@ -136,16 +166,15 @@ button:hover {
 }
 
 /* Ensure the text layers overlap perfectly */
-.actual-text,
-.hover-text {
+.actual-text, .hover-text {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   width: 100%;
   height: 100%;
-  background-color: #303030;
+  background-color: #22223B;
 }
 
 /* Hover animation text */
@@ -157,13 +186,11 @@ button:hover {
   transition: clip-path 0.5s ease-in-out;
   clip-path: inset(0 100% 0 0); /* Initially hidden */
   -webkit-text-stroke: 1px var(--animation-color);
-  background-color: #303030;
 }
 
 /* Hover effect (clip-path expands) */
-.button:hover .hover-text {
+.flarenics:hover .hover-text {
   clip-path: inset(0 0 0 0);
-  background-color: #303030;
 }
 
 img {
@@ -174,9 +201,9 @@ img {
 }
 
 #githubLogo {
-  max-height: 36px;
+  max-height: 32px;
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
 }
-
 
 .mainTitle {
   display: flex;
@@ -185,14 +212,17 @@ img {
   font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+#characterCard {
+  margin-right: 16px;
+}
+
 #characterSplash, #characterCard, #characterIcon {
   max-width: 100%;
   height: auto;
   border-radius: 20px;
-  border-style: inset;
-  border-color: rgb(48, 15, 100);
-  border-width: px;
-  box-shadow: 15px 15px 0px black;
+  border: 3px solid rgb(255, 255, 255, 0.08);
+  /* box-shadow: 15px 15px 0px black; */
+  background: #1C1719;
   opacity: 1;
 }
 
@@ -213,14 +243,21 @@ img {
   border-style: inset;
   border-color: rgb(0, 0, 0);
   border-width: 4px;
-  box-shadow: 15px 15px 0px black;
+  /* box-shadow: 15px 15px 0px black; */
+  background: #1C1719;
   opacity: 1;
 }
 
 .outputImages {
   display: flex;
-  border-radius: 6px;
-  border: 6px solid black;
+  border-radius: 8px;
+  border: 1px solid rgb(255, 255, 255, 0.08);
+  background: rgb(255, 255, 255, 0.03);
+  justify-content: center;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 16px;
 }
 
 #characterCard {
@@ -239,9 +276,22 @@ img {
   border: 1px;
 }
 
+#userInputWrapper {
+  width: 1200px;
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #userInput {
-  display: flex;
-  padding: 16px 0px 16px 0px;
+  display: inline-block;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid rgb(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgb(255, 255, 255, 0.03);
 }
 
 #userInput button {
@@ -250,7 +300,7 @@ img {
 }
 
 #searchPoints {
-  background-color: #171728;
+  background-color: #1C1719;
   border: none;
   padding: 8px 16px 8px 16px;
   border-radius: 100px;
@@ -259,14 +309,14 @@ img {
 }
 
 #characterName {
-  background-color: #171728;
+  background-color: #1C1719;
   border: none;
   padding: 8px 16px 8px 16px;
   border-radius: 100px;
   margin-right: 16px;
 }
 
-#characterName:hover {
+#characterName:hover, #characterName:focus, #searchPoints:hover, #searchPoints:focus {
   border: none;
   outline: none;
 }
@@ -282,10 +332,12 @@ img {
   border-radius: 21px;
   width: auto;
   height: 42px; 
-  background-color: rgb(32, 32, 32);
+  background-color: rgb(0, 0, 0, 0.2);
   padding: 0px 48px 0px 48px;
   font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* filter: drop-shadow(0px 0px 32px  rgb(71, 71, 71)); */
+  font-size: 28px;
+  align-items: center;
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .artifactTitles {

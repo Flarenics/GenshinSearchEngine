@@ -1,3 +1,12 @@
+window.addEventListener("scroll", function () {
+    const header = document.querySelector("header");
+    if (window.scrollY > 0) {
+      header.classList.add("headerSmaller");
+    } else {
+      header.classList.remove("headerSmaller");
+    }
+});
+
 async function fetchInfo(){
 
     const userInput = document.getElementById("searchPoints").value.toLocaleLowerCase();
