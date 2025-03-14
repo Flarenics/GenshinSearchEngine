@@ -8,36 +8,44 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+
+
     <header>
         <!-- Flarenics Logo -->
-        <div class="logo-container">
+        <div class="ft1">
             <img class="logo" src="https://genshin.jmp.blue/characters/hu-tao/icon" id="FlarenicsIcon" alt="Flarenics Icon">
-        </div>
             <!-- funny button -->
             <button class="button" data-text="Flarenics">
                 <span class="actual-text">&nbsp;Flarenics&nbsp;</span>
                 <span aria-hidden="true" class="hover-text">&nbsp;Flarenics&nbsp;</span>
             </button>
+        </div>
             <!-- Genshin Search Engine Title -->
-        <h1 class="mainTitle" id="genshinSearchEngine">Genshin Search Engine</h1>
+        <div class="ft2">
+            <h1 id="genshinSearchEngine">Genshin Search Engine</h1>
+        </div>
         <!-- Github Button -->
-        <a class="cta" href="https://github.com/Flarenics/GenshinSearchEngine/" target="_blank"><button id="githubButton">
-            <img src="images\GithubLogo.png" alt="github logo" id="githubLogo">
-        </button></a>
+         <div class="ft3">
+            <a class="cta" href="https://github.com/Flarenics/GenshinSearchEngine/" target="_blank"><button id="githubButton">
+                <img src="images\GithubLogo.png" alt="github logo" id="githubLogo">
+            </button></a>
+            <div class="right"></div>
+        </div>
     </header>
+
+
     <!-- Character/Nation/Artifact Selector -->
     <select name="searchPoints" id="searchPoints"  onchange="this.form.submit();">
         <option id="options" value="Character">Character</option>
         <option id="options" value="Artifact">Artifact</option>
     </select>
 
-    <input type="text" id="characterName" placeholder="Enter name">
+    <input type="text" id="characterName" placeholder="Enter name" class="search" onkeypress="search(event)">
     <button onclick="fetchInfo()">Search</button><br>
+
     <div class="outputImages">
-    <div class="outputImagesChar">
         <img src="images\cardPlaceholder.png" alt="" id="characterCard" style="display: block;">
         <img src="images\splashPlaceholder.png" alt="" id="characterSplash" style="display: block;" crossorigin>
-        <img src="images\iconPlaceholder.png" alt="" id="characterIcon" style="display: block;">
     </div>
     <div class="outputImagesArt">
         <img src="" alt="" id="artCirclet" alt="" style="display: none;">
@@ -46,11 +54,10 @@
         <img src="" alt="" id="artPlume" alt="" style="display: none;">
         <img src="" alt="" id="artSands" alt="" style="display: none;">
     </div>
-</div>
     <div class="outputText">
         <div class="characterOutputText">
             <div class="charNameWrapper">
-                <h1 id="charName"></h1>
+                <h1 id="charName" style="display: none"></h1>
             </div>
             <h1 id="charTitle"></h1>
             <h1 id="charDesc"></h1>

@@ -5,14 +5,15 @@ async function fetchInfo(){
 
     const imgElementSplash = document.getElementById("characterSplash");
     const imgElementCard = document.getElementById("characterCard");
-    const imgElementIcon = document.getElementById("characterIcon");
+    //const imgElementIcon = document.getElementById("characterIcon");
     imgElementSplash.style.display = "none";
     imgElementCard.style.display = "none";
-    imgElementIcon.style.display = "none";
+    //imgElementIcon.style.display = "none";
     const charName = document.getElementById("charName");
     const charTitle = document.getElementById("charTitle");
     const charDesc = document.getElementById("charDesc");
     charName.textContent = ""
+    charName.style.display = "none";
     charTitle.textContent = ""
     charDesc.textContent = ""
 
@@ -45,6 +46,22 @@ async function fetchInfo(){
     imgElementSands.src = "";
     imgElementSands.style.display = "none";
 
+    const changeMe = document.getElementById("charName");
+    const changeMe2 = document.getElementById("characterSplash");
+    const changeMe3 = document.getElementById("characterCard");
+    //const changeMe4 = document.getElementById("characterIcon");
+
+    changeMe.style.color = `rgba(255, 255, 255, 0.15)`;
+    changeMe.style.filter = `drop-shadow(0px 0px 32px rgba(255 ,255,255, 0.25))`;
+
+    changeMe2.style.boxShadow = `0px 0px 2px rgba(255, 255, 255,0.15)`;
+    changeMe3.style.boxShadow = `0px 0px 2px rgba(255, 255, 255, 0.15)`;
+    //changeMe4.style.boxShadow = `0px 0px 2px rgba(255, 255, 255, 0.15)`;
+
+    changeMe2.style.borderColor = `rgba(255, 255, 255, 0.15)`;
+    changeMe3.style.borderColor = `rgba(255, 255, 255, 0.15)`;
+    //changeMe4.style.borderColor = `rgba(255, 255, 255, 0.15)`;
+
     if (userInput == "character"){
         try{
             const characterName = document.getElementById("characterName").value.toLocaleLowerCase();
@@ -61,7 +78,7 @@ async function fetchInfo(){
     
             const imgElementSplash = document.getElementById("characterSplash");
             const imgElementCard = document.getElementById("characterCard");
-            const imgElementIcon = document.getElementById("characterIcon");
+            //const imgElementIcon = document.getElementById("characterIcon");
             const charName = document.getElementById("charName");
             const charTitle = document.getElementById("charTitle");
             const charDesc = document.getElementById("charDesc");
@@ -70,9 +87,10 @@ async function fetchInfo(){
             imgElementSplash.style.display = "block";
             imgElementCard.src = characterCard;
             imgElementCard.style.display = "block";
-            imgElementIcon.src = characterIcon;
-            imgElementIcon.style.display = "block";
+            //imgElementIcon.src = characterIcon;
+            //imgElementIcon.style.display = "block";
             charName.textContent = data.name
+            charName.style.display = "block";
             charTitle.textContent = data.title
             charDesc.textContent = data.description
             
@@ -183,7 +201,7 @@ image.onload = function() {
     const changeMe = document.getElementById("charName");
     const changeMe2 = document.getElementById("characterSplash");
     const changeMe3 = document.getElementById("characterCard");
-    const changeMe4 = document.getElementById("characterIcon");
+    //const changeMe4 = document.getElementById("characterIcon");
 
 
     changeMe.style.color = `rgb(${R},${G},${B})`;
@@ -191,9 +209,21 @@ image.onload = function() {
 
     changeMe2.style.boxShadow = `0px 0px 64px rgba(${R},${G},${B}, 1)`;
     changeMe3.style.boxShadow = `0px 0px 64px rgba(${R},${G},${B}, 1)`;
-    changeMe4.style.boxShadow = `0px 0px 64px rgba(${R},${G},${B}, 1)`;
+    //changeMe4.style.boxShadow = `0px 0px 64px rgba(${R},${G},${B}, 1)`;
 
     changeMe2.style.borderColor = `rgba(${R},${G},${B}, 1)`;
     changeMe3.style.borderColor = `rgba(${R},${G},${B}, 1)`;
-    changeMe4.style.borderColor = `rgba(${R},${G},${B}, 1)`;
+    //changeMe4.style.borderColor = `rgba(${R},${G},${B}, 1)`;
+};
+
+function search(event) {
+    let value = event.which;
+    if(value === 13){
+  
+     // use this to prevent form submit
+       event.preventDefault();
+  
+     //call your function or anything else
+     fetchInfo();
+    }
 };

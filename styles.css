@@ -21,19 +21,23 @@ button {
 
 header {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0px 0px;
-  width: 100%;
-  position: relative;
   background-color: #303030;
-  margin: 0px, 0px;
-  height: 80px;
+  width: 100%;
+  align-items: center;
+  border-radius: 8px;
+  border: solid black;
+  gap: 1em;
+  height: 10vh;
 }
 
-.header-container {
-  margin: 0px;
-  padding: 0px;
+.ft1 {
+  flex: 1;
+  display: flex;
+}
+
+.ft3 {
+  flex: 1;
+  display: flex;
 }
 
 nav, .cta {
@@ -163,24 +167,13 @@ img {
   max-height: 600px;
 }
 
-body {
-  padding: 12px;
-}
-
-header {
-  padding: 0px;
-  width: 100%;
-  margin-top: -12px;
-  border-radius: 6px;
-}
-
 #githubLogo {
   max-width: 64px;
-  background-color: rgb(48, 48, 48, 1);
+  background-color: rgb(29, 29, 29);
 }
 
 #githubLogo:hover {
-  background-color: rgb(48, 48, 48, 0.8);
+  background-color: rgba(29, 29, 29, 0.8);
 }
 
 .mainTitle {
@@ -222,11 +215,18 @@ header {
   opacity: 1;
 }
 
-.outputImagesChar {
+.outputImages {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 30px;
+  border-radius: 6px;
+  border: 6px solid black;
+}
+
+#characterCard {
+  align-content: end;
+}
+
+#characterSplash {
+  align-content: flex-end;
 }
 
 .outputImagesArt {
@@ -300,4 +300,8 @@ header {
   background-color: #0000008f;
   color: white;
   filter: saturate(10) drop-shadow(0px 0px 24px rgb(207, 85, 255));
+}
+
+.searchTitleContainer {
+  background-color: #e1ff00;
 }
