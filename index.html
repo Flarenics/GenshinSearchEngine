@@ -28,27 +28,45 @@
     <!-- Character/Nation/Artifact Selector wit -->
     <select name="searchPoints" id="searchPoints"  onchange="this.form.submit();">
         <option id="options" value="Character">Character</option>
-        <option id="options" value="Nation">Nation</option>
         <option id="options" value="Artifact">Artifact</option>
     </select>
 
     <input type="text" id="characterName" placeholder="Enter name">
     <button onclick="fetchInfo()">Search</button><br>
     <div class="outputImages">
-        <img src="images\cardPlaceholder.png" alt="2" id="characterCard" style="display: block;">
-        <img src="images\splashPlaceholder.png" alt="2" id="characterSplash" style="display: block;">
-        <img src="images\iconPlaceholder.png" alt="2" id="characterIcon" style="display: block;">
-
-        <img src="" alt="" id="nationIcon">
+    <div class="outputImagesChar">
+        <img src="images\cardPlaceholder.png" alt="" id="characterCard" style="display: block;">
+        <img src="images\splashPlaceholder.png" alt="" id="characterSplash" style="display: block;">
+        <img src="images\iconPlaceholder.png" alt="" id="characterIcon" style="display: block;">
     </div>
+    <div class="outputImagesArt">
+        <img src="" alt="" id="artCirclet" alt="" style="display: none;">
+        <img src="" alt="" id="artFlower" alt="" style="display: none;">
+        <img src="" alt="" id="artGoblet" alt="" style="display: none;">
+        <img src="" alt="" id="artPlume" alt="" style="display: none;">
+        <img src="" alt="" id="artSands" alt="" style="display: none;">
+    </div>
+</div>
     <div class="outputText">
-        <h1 id="charName"></h1>
-        <h1 id="charTitle"></h1>
-        <h1 id="charDesc"></h1>
+        <div class="characterOutputText">
+            <h1 id="charName"></h1>
+            <h1 id="charTitle"></h1>
+            <h1 id="charDesc"></h1>
+        </div>
+        <div class="artifactOutputText">
+            <h1 id="artName"></h1>
+            <h1 id="artMaxRar"></h1>
+            <h1 id="art2piece"></h1>
+            <h1 id="art4piece"></h1>
+            <div class="artifactTitles">
+                <h1 id="circletTitle"></h1>
+                <h1 id="flowerTitle"></h1>
+                <h1 id="gobletTitle"></h1>
+                <h1 id="plumeTitle"></h1>
+                <h1 id="sandsTitle"></h1>
+            </div>
+        </div>
 
-        <h1 id="nationName"></h1>
-        <h1 id="nationElement"></h1>
-        <h1 id="nationLeader"></h1>
     </div>
 <script src="app.js"></script>
 </body>

@@ -211,11 +211,30 @@ header {
   opacity: 0.8;
 }
 
-.outputImages {
+#artCirclet, #artFlower, #artGoblet, #artPlume, #artSands {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+  border-style: inset;
+  border-color: rgb(0, 0, 0);
+  border-width: 4px;
+  box-shadow: 15px 15px 0px black;
+  opacity: 1;
+}
+
+.outputImagesChar {
   display: flex;
   justify-content: center;
   gap: 20px;
   margin-top: 30px;
+}
+
+.outputImagesArt {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  border: 1px;
 }
 
 #options {
@@ -233,4 +252,27 @@ header {
   height: 40px; 
   background-color: rgb(39, 39, 39);
   filter: drop-shadow(0px 0px 32px  rgb(71, 71, 71));
+}
+
+.artifactTitles {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  margin: 22px;
+  padding-left: 340px;
+  padding-right: 380px;
+}
+
+#artCirclet:hover, #artFlower:hover, #artGoblet:hover, #artPlume:hover, #artSands:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+#circletTitle, #flowerTitle, #gobletTitle, #plumeTitle, #sandsTitle {
+  padding-left: 95px;
+  padding-right: 95px;
 }
