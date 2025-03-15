@@ -56,6 +56,7 @@ button {
 
 button:hover {
   background-color: rgb(227, 228, 219, 0.8);
+  transition: 0.3s ease-in-out;;
 }
 
 /* === Flarenics Button Animation (Final, Perfectly Sized Version) === */
@@ -95,11 +96,13 @@ button:hover {
   clip-path: inset(0 100% 0 0); /* Initially hidden */
   /* -webkit-text-stroke: 1px var(--animation-color); */
   margin-left: 2px;
+  transition: 0.3s ease-in-out;
 }
 
 /* Hover effect (clip-path expands) */
 .flarenics:hover .hover-text {
   clip-path: inset(0 0 0 0);
+  transition: 0.3s ease-in-out;
 }
 
 #githubLogo {
@@ -124,6 +127,7 @@ button:hover {
 #characterIcon:hover, #characterCard:hover, #characterSplash:hover {
   cursor: pointer;
   opacity: 0.8;
+  transition: 0.3s ease-in-out;
 }
 
 #charTitle {
@@ -184,6 +188,7 @@ button:hover {
 #characterName:hover, #characterName:focus, #searchPoints:hover, #searchPoints:focus {
   border: none;
   outline: none;
+  transition: 0.3s ease-in-out;
 }
 
 #options {
@@ -245,4 +250,89 @@ button:hover {
 
 #constellationsBox hr {
   color: rgb(255, 255, 255, 0.36);
+}
+
+#constImage1, #constImage2, #constImage3, #constImage4, #constImage5, #constImage6 {
+  width: 64px;
+  size: 64px;
+  margin: 12px;
+}
+
+.card {
+  background-color: rgb(0, 0, 0, 0.2);
+  width: 18rem;
+  height: 18rem;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: background-color 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.card-title {
+  color: white;
+}
+
+.constellation-entry1, .constellation-entry2, .constellation-entry3, .constellation-entry4, .constellation-entry5, .constellation-entry6 {
+  width: 22rem;
+  height: 22rem;
+  margin: 20px;
+}
+
+.constellations-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  overflow-y: auto;
+  padding-right: 5px;
+  max-height: 200px;
+}
+
+.card-text::-webkit-scrollbar {
+  width: 5px;
+}
+
+.card-text::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+
+.card-text::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.card:hover {
+  background-color: rgb(0, 0, 0, 0.1);
+  width: 18rem;
+  height: 18rem;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 4px;
+  transform: scale(1.02);
+}
+
+#charConstShape {
+  max-width: 86px;
+  max-height: 86px;
+}
+
+#charConstTitleHolder {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#charConstShape {
+  border: 1px solid rgb(255, 255, 255, 0.08);
+  border-radius: 64px;
+  padding: 4px;
+  margin-right: 12px;
+  background-color: #000000;
 }

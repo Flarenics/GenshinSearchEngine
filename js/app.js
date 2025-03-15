@@ -65,14 +65,15 @@ async function fetchInfo(){
     //changeMe3.style.borderColor = `rgba(184, 184, 184, 0.34)`;
     //changeMe4.style.borderColor = `rgba(255, 255, 255, 0.15)`;
 
-    if (userInput == "character"){
         try{
             const totalOutputMid = document.getElementById("totalOutputMid");
             const constellationsBox = document.getElementById("constellationsBox");
             const noSearchResult = document.getElementById("noSearchResult");
             noSearchResult.style.display = "none";
 
-            const characterName = document.getElementById("characterName").value.toLocaleLowerCase();
+            const characterName = document.getElementById("characterName")
+            .value.toLocaleLowerCase()
+            .replace(/\s+/g, '-');
             
             try {
                 const response = await fetch(`https://genshin.jmp.blue/characters/${characterName}`);
@@ -95,7 +96,7 @@ async function fetchInfo(){
         
                 const imgElementSplash = document.getElementById("characterSplash");
                 const imgElementCard = document.getElementById("characterCard");
-                //const imgElementIcon = document.getElementById("characterIcon");
+                const imgElementIcon = document.getElementById("characterIcon");
                 const charName = document.getElementById("charName");
                 const charTitle = document.getElementById("charTitle");
                 const charDesc = document.getElementById("charDesc");
@@ -183,7 +184,7 @@ async function fetchInfo(){
                 charReleaseDate.textContent = formatReleaseDate(releaseDateData);
                 
                 // namecard image
-                charNamecardImage.src = `images/namecards/${data.name}.webp`;
+                charNamecardImage.src = `https://genshin.jmp.blue/characters/${data.id}/namecard-background`;
                 
                 // vision image
                 charVisionImage.src = `images/elements/${data.vision}.svg`;
@@ -200,37 +201,47 @@ async function fetchInfo(){
                 // constellations
                 const constellations = data.constellations;
                 const constellationsContainer = document.getElementById("charConstellations");
-                constellationsContainer.innerHTML = `<p class="constellations">Constellations:</p>`;
+                constellationsContainer.innerHTML = `
+                <div id="charConstTitleHolder">
+                <img id="charConstShape" src="https://genshin.jmp.blue/characters/${characterName}/constellation-shape">
+                <p class="constellations">${data.constellation}</p>
+                </div>
+                `;
 
-                // Loop through each constellation and append it to the container
+                // Create a wrapper container for all constellation entries
+                const constellationsWrapper = document.createElement("div");
+                constellationsWrapper.classList.add("constellations-wrapper"); // Add a CSS class for styling
+
+                // Loop through each constellation and append it to the wrapper
                 constellations.forEach((constellation) => {
                     const { level, name, description } = constellation;
 
                     // Create a new div for each constellation entry
                     const constellationElement = document.createElement("div");
-                    constellationElement.classList.add("constellation-entry"); // Add a CSS class for styling
+                    constellationElement.classList.add(`constellation-entry${level}`); // Add a CSS class for styling
 
-                    if (level != 6 ) {
-                        // Insert HTML content with horizontal line 
-                        constellationElement.innerHTML = `
-                        <p><strong>Level ${level}:</strong> ${name}</p>
-                        <p>${description}</p>
-                        <hr>
-                        `;
-                    } else {
-                        // Insert HTML content without horizontal line (only for last entry)
-                        constellationElement.innerHTML = `
-                        <p><strong>Level ${level}:</strong> ${name}</p>
-                        <p class="mb-0">${description}</p>
-                        `;
-                    }
-                    
+                    constellationElement.innerHTML = `
+                        <div class="card" style="width: 24rem;">
+                            <img id="constImage${level}" src="https://genshin.jmp.blue/characters/${data.id}/constellation-${level}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Level ${level}:</h5>
+                                <p class="card-text">${description}</p>
+                            </div>
+                        </div>
+                    `;
 
-                    // Append to the container
-                    constellationsContainer.appendChild(constellationElement);
+                    // Append the constellation entry to the wrapper
+                    constellationsWrapper.appendChild(constellationElement);
                 });
 
+                // Append the wrapper to the main container
+                constellationsContainer.appendChild(constellationsWrapper);
+
                 console.log(data);
+
+                const websiteIcon = document.getElementById("websiteIcon");
+                websiteIcon.href = characterIcon;
+
             } catch (error) {
                 constellationsBox.style.display = "none";
                 totalOutputMid.style.display = "none";
@@ -242,10 +253,7 @@ async function fetchInfo(){
         catch(error){
             console.error(error);
         }
-    }  else {
-        console.log('now how did you manage that?')
-    }
-}
+    } 
 
 function getColor(imageElem, ratio) {
     const canvas = document.createElement('canvas');
@@ -302,9 +310,10 @@ image.onload = function() {
     const changeMe3 = document.getElementById("characterCard");
     //const changeMe4 = document.getElementById("characterIcon");
 
+    const changeMe5 = document.getElementById("charConstShape")
 
     changeMe.style.color = `rgb(${R},${G},${B})`;
-    changeMe.style.filter = `saturate(4) brightness(1.2) drop-shadow(0px 0px 24px rgba(${R},${G},${B}, 0.8))`;
+    changeMe.style.filter = `saturate(4) brightness(3) drop-shadow(0px 0px 32px rgba(${R},${G},${B}, 0.8))`;
 
     changeMe2.style.boxShadow = `0px 0px 32px rgba(${R},${G},${B}, 1)`;
     changeMe3.style.boxShadow = `0px 0px 32px rgba(${R},${G},${B}, 1)`;
@@ -313,6 +322,8 @@ image.onload = function() {
     changeMe2.style.borderColor = `rgba(${R},${G},${B}, 1)`;
     changeMe3.style.borderColor = `rgba(${R},${G},${B}, 1)`;
     //changeMe4.style.borderColor = `rgba(${R},${G},${B}, 1)`;
+
+    changeMe5.style.backgroundColor = `rgba(${R},${G},${B}, 0.2)`;
 };
 
 function search(event) {
