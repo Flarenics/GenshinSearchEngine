@@ -1,3 +1,5 @@
-write some shit in here
+TODO:
 
-ok
+
+Ideas:
+Card hovering expands to full splash art

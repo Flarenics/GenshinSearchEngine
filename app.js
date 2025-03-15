@@ -38,41 +38,47 @@ async function fetchInfo(){
     const plumeTitle = document.getElementById("plumeTitle")
     const sandsTitle = document.getElementById("sandsTitle")
 
-    circletTitle.textContent = ""
-    flowerTitle.textContent = ""
-    gobletTitle.textContent = ""
-    plumeTitle.textContent = ""
-    sandsTitle.textContent = ""
+    //circletTitle.textContent = ""
+    //flowerTitle.textContent = ""
+    //gobletTitle.textContent = ""
+    //plumeTitle.textContent = ""
+    //sandsTitle.textContent = ""
 
-    imgElementCirclet.src = "";
-    imgElementCirclet.style.display = "none";
-    imgElementFlower.src = "";
-    imgElementFlower.style.display = "none";
-    imgElementGoblet.src = "";
-    imgElementGoblet.style.display = "none";
-    imgElementPlume.src = "";
-    imgElementPlume.style.display = "none";
-    imgElementSands.src = "";
-    imgElementSands.style.display = "none";
+    //imgElementCirclet.src = "";
+    //imgElementCirclet.style.display = "none";
+    //imgElementFlower.src = "";
+    //imgElementFlower.style.display = "none";
+    //imgElementGoblet.src = "";
+    //imgElementGoblet.style.display = "none";
+    //imgElementPlume.src = "";
+    //imgElementPlume.style.display = "none";
+    //imgElementSands.src = "";
+    //imgElementSands.style.display = "none";
 
-    const changeMe = document.getElementById("charName");
-    const changeMe2 = document.getElementById("characterSplash");
-    const changeMe3 = document.getElementById("characterCard");
+    const totalOutputMid = document.getElementById("totalOutputMid");
+    totalOutputMid.style.display = "none";
+
+    //const changeMe = document.getElementById("charName");
+    //const changeMe2 = document.getElementById("characterSplash");
+    //const changeMe3 = document.getElementById("characterCard");
     //const changeMe4 = document.getElementById("characterIcon");
 
-    changeMe.style.color = `rgba(255, 255, 255, 0.15)`;
-    changeMe.style.filter = `drop-shadow(0px 0px 32px rgba(255 ,255,255, 0.25))`;
+    //changeMe.style.color = `rgba(184, 184, 184, 0.34)`;
+    //changeMe.style.filter = `drop-shadow(0px 0px 32px rgba(184, 184, 184, 0.34))`;
 
-    changeMe2.style.boxShadow = `0px 0px 2px rgba(255, 255, 255,0.15)`;
-    changeMe3.style.boxShadow = `0px 0px 2px rgba(255, 255, 255, 0.15)`;
+    //changeMe2.style.boxShadow = `0px 0px 2px rgba(184, 184, 184, 0.34)`;
+    //changeMe3.style.boxShadow = `0px 0px 2px rgba(184, 184, 184, 0.34)`;
     //changeMe4.style.boxShadow = `0px 0px 2px rgba(255, 255, 255, 0.15)`;
 
-    changeMe2.style.borderColor = `rgba(255, 255, 255, 0.15)`;
-    changeMe3.style.borderColor = `rgba(255, 255, 255, 0.15)`;
+    //changeMe2.style.borderColor = `rgba(184, 184, 184, 0.34)`;
+    //changeMe3.style.borderColor = `rgba(184, 184, 184, 0.34)`;
     //changeMe4.style.borderColor = `rgba(255, 255, 255, 0.15)`;
 
     if (userInput == "character"){
         try{
+            const totalOutputMid = document.getElementById("totalOutputMid");
+            totalOutputMid.style.display = "flex";
+
             const characterName = document.getElementById("characterName").value.toLocaleLowerCase();
             const response = await fetch(`https://genshin.jmp.blue/characters/${characterName}`)
     
@@ -91,6 +97,12 @@ async function fetchInfo(){
             const charName = document.getElementById("charName");
             const charTitle = document.getElementById("charTitle");
             const charDesc = document.getElementById("charDesc");
+            const charRarity = document.getElementById("charRarity");
+            const charVision = document.getElementById("charVision");
+            const charVisionWrapper = document.getElementById("charVisionWrapper");
+
+            const charVisionImage = document.getElementById("charVisionImage");
+            const charRarityImage = document.getElementById("charRarityImage");
     
             imgElementSplash.src = characterSplash;
             imgElementSplash.style.display = "block";
@@ -102,57 +114,46 @@ async function fetchInfo(){
             charName.style.display = "block";
             charTitle.textContent = data.title
             charDesc.textContent = data.description
+
+            var newVisionImage = ("");
+            var newRarityImage = ("");
             
-            console.log(data);
-        }
-        catch(error){
-            console.error(error);
-        }
-    } else if (userInput == "artifact"){
-        try{
-            const characterName = document.getElementById("characterName").value.toLocaleLowerCase();
-            const response = await fetch(`https://genshin.jmp.blue/artifacts/${characterName}`)
-    
-            if(!response.ok){
-                throw new Error("Could not fetch again womp");
+            charRarity.textContent = data.rarity;
+            charVision.textContent = data.vision;
+            charRarityWrapper.style.display = "flex";
+            charVisionWrapper.style.display = "flex";
+
+            if (data.vision == "Pyro"){
+                newVisionImage = ("images\\elements\\Pyro.svg");
+            } else if (data.vision == "Hydro"){
+                newVisionImage = ("images\\elements\\Hydro.svg");
+            } else if (data.vision == "Anemo"){
+                newVisionImage = ("images\\elements\\Anemo.svg");
+            } else if (data.vision == "Electro"){
+                newVisionImage = ("images\\elements\\Electro.svg");
+            } else if (data.vision == "Dendro"){
+                newVisionImage = ("images\\elements\\Dendro.svg");
+            } else if (data.vision == "Cryo"){
+                newVisionImage = ("images\\elements\\Cryo.svg");
+            } else if (data.vision == "Geo"){
+                newVisionImage = ("images\\elements\\Geo.svg");
+            };
+
+            if (data.rarity == "4"){
+                newRarityImage = ("images\\rarity\\4star.webp");
+            } else if (data.rarity == "5"){
+                newRarityImage = ("images\\rarity\\5star.webp");
             }
-    
-            const data = await response.json();
-            const circletImg = (`https://genshin.jmp.blue/artifacts/${characterName}/circlet-of-logos`);
-            const flowerImg = (`https://genshin.jmp.blue/artifacts/${characterName}/flower-of-life`);
-            const gobletImg = (`https://genshin.jmp.blue/artifacts/${characterName}/goblet-of-eonothem`);
-            const plumeImg = (`https://genshin.jmp.blue/artifacts/${characterName}/plume-of-death`);
-            const sandsImg = (`https://genshin.jmp.blue/artifacts/${characterName}/sands-of-eon`);
-            
-            const imgElementCirclet = document.getElementById('artCirclet')
-            const imgElementFlower = document.getElementById('artFlower')
-            const imgElementGoblet = document.getElementById('artGoblet')
-            const imgElementPlume = document.getElementById('artPlume')
-            const imgElementSands = document.getElementById('artSands')
 
-            imgElementCirclet.src = circletImg;
-            imgElementCirclet.style.display = "block";
-            imgElementFlower.src = flowerImg;
-            imgElementFlower.style.display = "block";
-            imgElementGoblet.src = gobletImg;
-            imgElementGoblet.style.display = "block";
-            imgElementPlume.src = plumeImg;
-            imgElementPlume.style.display = "block";
-            imgElementSands.src = sandsImg;
-            imgElementSands.style.display = "block";
-
-            circletTitle.textContent = "Circlet"
-            flowerTitle.textContent = "Flower"
-            gobletTitle.textContent = "Goblet"
-            plumeTitle.textContent = "Plume"
-            sandsTitle.textContent = "Sands"
+            charVisionImage.src = newVisionImage;
+            charRarityImage.src = newRarityImage;
 
             console.log(data);
         }
         catch(error){
             console.error(error);
         }
-    } else {
+    }  else {
         console.log('now how did you manage that?')
     }
 }
@@ -214,10 +215,10 @@ image.onload = function() {
 
 
     changeMe.style.color = `rgb(${R},${G},${B})`;
-    changeMe.style.filter = `saturate(8) brightness(1.2) drop-shadow(0px 0px 32px rgba(${R},${G},${B}, 0.8))`;
+    changeMe.style.filter = `saturate(4) brightness(1.2) drop-shadow(0px 0px 24px rgba(${R},${G},${B}, 0.8))`;
 
-    changeMe2.style.boxShadow = `0px 0px 64px rgba(${R},${G},${B}, 1)`;
-    changeMe3.style.boxShadow = `0px 0px 64px rgba(${R},${G},${B}, 1)`;
+    changeMe2.style.boxShadow = `0px 0px 32px rgba(${R},${G},${B}, 1)`;
+    changeMe3.style.boxShadow = `0px 0px 32px rgba(${R},${G},${B}, 1)`;
     //changeMe4.style.boxShadow = `0px 0px 64px rgba(${R},${G},${B}, 1)`;
 
     changeMe2.style.borderColor = `rgba(${R},${G},${B}, 1)`;

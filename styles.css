@@ -45,6 +45,9 @@ header.headerSmaller .logo {
 }
 
 header.headerSmaller .flarenics {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 16px;
   min-width: 126px;
   --border-right: 3px;
@@ -212,13 +215,39 @@ img {
   font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.totalOutputMid {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid rgb(255, 255, 255, 0.08);
+  background: rgb(255, 255, 255, 0.03);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 16px;
+  max-width: 1800px;
+  height: 580px;
+}
+
+#totalOutputMid {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid rgb(255, 255, 255, 0.08);
+    background: rgb(255, 255, 255, 0.03);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 16px;
+    max-width: 1800px;
+    height: 580px;
+}
+
 #characterCard {
   margin-right: 16px;
 }
 
 #characterSplash, #characterCard, #characterIcon {
-  max-width: 100%;
-  height: auto;
   border-radius: 20px;
   border: 3px solid rgb(255, 255, 255, 0.08);
   /* box-shadow: 15px 15px 0px black; */
@@ -236,36 +265,24 @@ img {
   opacity: 0.8;
 }
 
-#artCirclet, #artFlower, #artGoblet, #artPlume, #artSands {
-  max-width: 100%;
-  height: auto;
-  border-radius: 20px;
-  border-style: inset;
-  border-color: rgb(0, 0, 0);
-  border-width: 4px;
-  /* box-shadow: 15px 15px 0px black; */
-  background: #1C1719;
-  opacity: 1;
-}
-
-.outputImages {
+.titleDescWrap {
   display: flex;
-  border-radius: 8px;
-  border: 1px solid rgb(255, 255, 255, 0.08);
-  background: rgb(255, 255, 255, 0.03);
-  justify-content: center;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 16px;
+  flex-direction: column;
+  margin: 12px;
+  padding-inline: 12px;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.253);
+  border-right: 3px solid rgba(0, 0, 0, 0.253);
+  border-radius: 12px;
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#characterCard {
-  align-content: end;
+#charTitle {
+  color: #ffffff;
+  text-decoration: underline;
 }
 
-#characterSplash {
-  align-content: flex-end;
+#charDesc {
+  color: #ffffff;
 }
 
 .outputImagesArt {
@@ -340,46 +357,14 @@ img {
   transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.artifactTitles {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  align-items: center;
-  align-self: center;
-  align-content: center;
-  margin: 22px;
-  padding-left: 340px;
-  padding-right: 380px;
-}
-
-#artCirclet:hover, #artFlower:hover, #artGoblet:hover, #artPlume:hover, #artSands:hover {
-  cursor: pointer;
-  opacity: 0.8;
-}
-
-#circletTitle, #flowerTitle, #gobletTitle, #plumeTitle, #sandsTitle {
-  padding-left: 95px;
-  padding-right: 95px;
-}
-
 #charName, #charTitle, #charDesc {
-  display: flex;
   font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.charNameWrapper {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-  margin: 10px;
 }
 
 #charName {
   display: flex;
   font-weight: 800;
   justify-content: center;
-  text-decoration: underline;
   font-size: 52px;
   padding: 15px;
   border-radius: 12px;
@@ -388,6 +373,88 @@ img {
   filter: saturate(10) drop-shadow(0px 0px 24px rgb(207, 85, 255));
 }
 
-.searchTitleContainer {
-  background-color: #e1ff00;
+.outputText {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  flex-grow: 1;
+  max-width: 900px;
+  height: 475px;
+  border-radius: 6px;
 }
+
+#charVisionWrapper {
+  border: 3px solid rgba(0, 0, 0, 0.253);
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#charRarityWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid rgba(0, 0, 0, 0.253);
+  border-radius: 64px;
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 128px;
+  height: 128px;
+}
+
+.charRarityImageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.charNameWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 6px;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.253);
+  border-right: 3px solid rgba(0, 0, 0, 0.253);
+  width: 600px;
+}
+
+#charRarityImage {
+  width: 129px;
+  height: 33px;
+}
+
+#charRarityDivWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 32px;
+  height: 32px;
+}
+
+#charRarity {
+  size: 19px
+}
+
+#charVisionImage {
+  width: 80px;
+  height: 80px;
+}
+
+#charVision {
+  size: 19px
+}
+
+#charVisionWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid rgba(0, 0, 0, 0.253);
+  border-radius: 64px;
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 128px;
+  height: 128px;
+}
+
