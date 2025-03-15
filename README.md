@@ -1,5 +1,13 @@
 TODO:
 
+create talent section
+
+fix sort by button
+
+make main page
+
+
+changed constellation layout to cards, fixed namecards, dynamic website icon
 
 Ideas:
 
