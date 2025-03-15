@@ -2,12 +2,11 @@ TODO:
 
 create talent section
 
-fix sort by button
+main page layout with character chart/grid
 
-make main page
+sort by button
 
 
-changed constellation layout to cards, fixed namecards, dynamic website icon
 
 Ideas:
 
