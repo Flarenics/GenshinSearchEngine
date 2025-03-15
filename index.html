@@ -1,82 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genshin Search</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genshin Search</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-
-
-    <header>
-        <!-- Flarenics Logo -->
-        <div class="ft1">
-            <img class="logo" src="https://genshin.jmp.blue/characters/hu-tao/icon" id="FlarenicsIcon" alt="Flarenics Icon">
-            <!-- funny button -->
-            <button class="flarenics" data-text="Flarenics">
-                <span class="actual-text">&nbsp;Flarenics&nbsp;</span>
-                <span aria-hidden="true" class="hover-text">&nbsp;Akshiro&nbsp;</span>
-            </button>
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg" style="background: #22223B;">
+    <div class="container">
+      <div class="col-lg-4 d-flex">
+        <img class="logo" src="https://genshin.jmp.blue/characters/hu-tao/icon" id="FlarenicsIcon" alt="Flarenics Icon">
+        <!-- funny button -->
+        <button class="flarenics" data-text="Flarenics">
+          <span class="actual-text">&nbsp;Flarenics&nbsp;</span>
+          <span aria-hidden="true" class="hover-text">&nbsp;Akshiro&nbsp;</span>
+        </button>
+      </div>
+      
+      <div class="col-lg-4">
+        <div class="container">
+          <h1 class="m-auto" id="genshinSearchEngine">Genshin Search Engine</h1>
         </div>
-            <!-- Genshin Search Engine Title -->
-        <div class="ft2">
-            <h1 id="genshinSearchEngine">Genshin Search Engine</h1>
-        </div>
-        <!-- Github Button -->
-         <div class="ft3">
-            <a class="cta" href="https://github.com/Flarenics/GenshinSearchEngine/" target="_blank">
+      </div>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="col-lg-4">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a href="https://github.com/Flarenics/GenshinSearchEngine/" target="_blank">
                 <button id="githubButton">
-                    <img src="images\GithubLogo.png" alt="github logo" id="githubLogo">
+                  <img src="images\GithubLogo.png" alt="github logo" id="githubLogo">
                 </button>
-            </a>
+              </a>
+            </li>
+          </ul>
         </div>
-    </header>
+      </div>
+    </div>
+  </nav>
 
-    <div id="userInputWrapper">
+  <!-- user input -->
+  <div class="container" id="userInputWrapper">
+    <div class="row">
+      <div class="col">
         <div id="userInput">
-            <!-- Character/Nation/Artifact Selector -->
-            <select name="searchPoints" id="searchPoints"  onchange="this.form.submit();">
-                <option id="options" value="Character">Character</option>
-            </select>
+          <!-- Character/Nation/Artifact Selector -->
+          <select name="searchPoints" id="searchPoints"  onchange="this.form.submit();">
+            <option id="options" value="Character">Sort by:</option>
+          </select>
     
-            <input type="text" id="characterName" placeholder="Enter name" class="search" onkeypress="search(event)">
-            <button onclick="fetchInfo()">Search</button><br>
+          <input type="text" id="characterName" placeholder="Enter name" class="search" onkeypress="search(event)">
+          <button onclick="fetchInfo()">Search</button><br>
         </div>
+      </div>
     </div>
+  </div>
+
+  <!-- results -->
+  <div class="container totalOutputMid" id="totalOutputMid" style="display: none;">
+    <div class="row">
+      <div class="col-lg-2 d-flex flex-column">
+        <!-- first row (character card) -->
+        <div class="row mb-2">
+          <div class="col">
+            <img src="images\cardPlaceholder.png" alt="leftImage" id="characterCard">
+          </div>
+        </div>
+      
+        <!-- second row (affiliation) -->
+        <div class="row mt-3 flex-grow-1 d-flex align-items-center">
+          <div class="col h-100">
+            <div class="box d-flex text-center h-100">
+              <p class="m-auto" id="charAffiliation" style="font-weight: 700; font-style: italic;"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-10">
+        <div class="row h-100">
+          <div class="col-lg-5">
+            <div class="outputText box p-4 h-100">
+              <div class="row">
+                <div class="col">
+                  <img id="charNamecardImage" src="" alt=" Namecard">
+                </div>
+              </div>
+
+              <!-- name -->
+              <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p style="font-weight: 600;">Name</p>
+                </div>
     
-    <div class="totalOutputMid" id="totalOutputMid" style="display: none;">
-            <div class="cardWrapper">
-                <img src="images\cardPlaceholder.png" alt="leftImage" id="characterCard">
-            </div>
-            <div class="outputText">
-                <div class="charNameWrapper">
-                    <div id="charVisionWrapper" style="display: none">
-                        <img id="charVisionImage" src="" alt="">
-                        <h1 id="charVision"></h1>
-                    </div>
-                    <h1 id="charName" style="display: none"></h1>
-                    <div id="charRarityWrapper" class="charRarityWrapper"style="display: none">
-                        <div id="charRarityImageWrapper">
-                            <img id="charRarityImage" src="images\elements\Hydro.svg" alt="">
-                        </div> 
-                        <div id="charRarityDivWrap">
-                            <h1 id="charRarity"></h1>
-                        </div>
-                    </div>
+                <div class="col-8">
+                  <p id="charName"></p>
                 </div>
-                <div class="titleDescWrap">
-                    <h1 id="charTitle"></h1>
-                    <h1 id="charDesc"></h1>
+              </div>
+
+              <!-- rarity -->
+              <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p>Rarity</p>
                 </div>
+
+                <div class="col-8">
+                  <div id="charRarityWrapper">
+                    <div id="charRarityImageWrapper" class="d-flex align-items-center">
+                      <img id="charRarityImage" src="images\elements\Hydro.svg" alt="">
+                      <p class="ms-2" id="charRarity"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- element -->
+              <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p>Element</p>
+                </div>
+    
+                <div class="col-8">
+                  <div id="charVisionWrapper" class="d-flex align-items-center">
+                    <img id="charVisionImage" src="" alt="">
+                    <p class="ms-2" id="charVision"></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- weapon -->
+              <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p>Weapon</p>
+                </div>
+
+                <div class="col-8">
+                  <div id="charWeaponWrapper" class="d-flex align-items-center">
+                    <img id="charWeaponImage" src="" alt="">
+                    <p class="ms-2" id="charWeapon"></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- nation -->
+              <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p>Nation</p>
+                </div>
+
+                <div class="col-8">
+                  <div id="charNationWrapper" class="d-flex align-items-center">
+                    <img id="charNationImage" src="" alt="">
+                    <p class="ms-2" id="charNation"></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- gender -->
+              <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p>Gender</p>
+                </div>
+
+                <div class="col-8">
+                  <div id="charGenderWrapper" class="d-flex align-items-center">
+                    <p id="charGender"></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- birthday -->
+              <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p>Birthday</p>
+                </div>
+
+                <div class="col-8">
+                  <div id="charBirthdayWrapper" class="d-flex align-items-center">
+                    <p id="charBirthday"></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- release date -->
+              <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p>Release Date</p>
+                </div>
+
+                <div class="col-8">
+                  <div id="charReleaseDateWrapper" class="d-flex align-items-center">
+                    <p id="charReleaseDate"></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- affiliation -->
+              <!-- <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p>Affiliation</p>
+                </div>
+
+                <div class="col-8">
+                  <div id="charAffiliation" class="d-flex align-items-center">
+                    <img id="charAffiliation" src="" alt="">
+                    <p id="charAffiliation"></p>
+                  </div>
+                </div>
+              </div> -->
             </div>
-            <div class="splashWrapper">
-                <img src="images\splashPlaceholder.png" alt="rightImage" id="characterSplash" crossorigin>
+          </div>
+  
+          <div class="col-lg-7">
+            <div class="titleDescWrap box p-4">
+              <p id="charTitle"></p>
+              <p id="charDesc"></p>
             </div>
+
+            <div class="row mt-4">
+              <div class="col">
+                <img class="box" src="images\splashPlaceholder.png" alt="rightImage" id="characterSplash" crossorigin>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-<script src="app.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </div>
+
+  <div class="container mt-4 mb-4 w-100" id="constellationsBox" style="display: none;">
+    <!-- constellation -->
+    <div class="row">
+      <div class="col">
+        <div class="box p-4" id="charConstellations">
+          <p class="constellations">Constellations:</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-4" id="noSearchResult" style="display: none;">
+    <div class="row">
+      <div class="col">
+        <div class="box p-4">
+          <p class="mb-0 text-center" style="font-style: italic; font-weight: 700;">Hmm... no matches found. Maybe try a different keyword?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

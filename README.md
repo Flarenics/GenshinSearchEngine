@@ -2,4 +2,4 @@ TODO:
 
 
 Ideas:
-Card hovering expands to full splash art
+Card hovering expands to show full splash art
