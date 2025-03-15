@@ -338,3 +338,65 @@ button:hover {
   margin-right: 12px;
   background-color: #000000;
 }
+
+/* Autocomplete container styling */
+.autocomplete {
+  position: relative;
+  display: inline-block;
+  width: auto;
+}
+
+/* Autocomplete items container styling */
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #1c1719;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /* Match the width of the search box */
+  width: 95%;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #1c1719;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  border-radius: 15px; /* Add rounded corners to the container */
+}
+
+/* Individual autocomplete item styling */
+.autocomplete-items div {
+  padding: 10px 16px; /* Adjust padding for better alignment */
+  cursor: pointer;
+  background-color: #1c1719;
+  color: #e3e4db;
+  border-bottom: 1px solid #333;
+  text-align: left;
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center align items vertically */
+}
+
+/* Round top corners of the first item */
+.autocomplete-items div:first-child {
+  border-radius: 15px 15px 0 0; 
+}
+
+/* Round bottom corners of the last item */
+.autocomplete-items div:last-child {
+  border-radius: 0 0 15px 15px; 
+}
+
+/* Round all corners if only one element */
+.autocomplete-items div:only-child {
+  border-radius: 15px; 
+}
+
+/* Hover effect for autocomplete items */
+.autocomplete-items div:hover {
+  background-color: #333;
+}
+
+/* Active item styling when navigating with arrow keys */
+.autocomplete-active {
+  background-color: #444 !important;
+  color: #ffffff;
+}

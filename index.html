@@ -57,7 +57,9 @@
             <option id="options" value="Character">Sort by:</option>
           </select>
     
-          <input type="text" id="characterName" placeholder="Enter name" class="search" onkeypress="search(event)">
+          <div class="autocomplete">
+            <input type="text" id="characterName" placeholder="Enter name" class="search" onkeypress="search(event)">
+          </div>
           <button onclick="fetchInfo()">Search</button><br>
         </div>
       </div>
