@@ -371,7 +371,7 @@ button:hover {
   color: #e3e4db;
   border-bottom: 1px solid #333;
   text-align: left;
-  display: flex; /* Use flexbox for alignment */
+  display: block; /* Use flexbox for alignment */
   align-items: center; /* Center align items vertically */
 }
 
