@@ -86,7 +86,7 @@ async function fetchInfo(){
                 }
 
                 totalOutputMid.style.display = "flex";
-                constellationsBox.style.display = "flex";
+                constellationsBox.style.display = "block";
     
                 const data = await response.json();
                 const characterSplash = (`https://genshin.jmp.blue/characters/${characterName}/gacha-splash`);
@@ -200,6 +200,7 @@ async function fetchInfo(){
                 // constellations
                 const constellations = data.constellations;
                 const constellationsContainer = document.getElementById("charConstellations");
+                constellationsContainer.innerHTML = `<p class="constellations">Constellations:</p>`;
 
                 // Loop through each constellation and append it to the container
                 constellations.forEach((constellation) => {
