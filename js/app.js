@@ -256,6 +256,7 @@ async function fetchInfo(){
     } 
 
 function getColor(imageElem, ratio) {
+    imageElem.crossOrigin = "anonymous"
     const canvas = document.createElement('canvas');
 
     let width = canvas.width = imageElem.width;
@@ -301,7 +302,7 @@ function getColor(imageElem, ratio) {
     };
 }
 
-const image = document.getElementById("characterSplash");
+const image = document.getElementById("charNamecardImage");
 image.onload = function() {
     const { R, G, B } = getColor(image,4);
 
