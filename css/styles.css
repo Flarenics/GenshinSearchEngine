@@ -122,11 +122,12 @@ button:hover {
   border-radius: 8px;
   border: 1px solid rgb(255, 255, 255, 0.08);
   background: rgb(255, 255, 255, 0.03);
+  opacity: 0.9;
 }
 
 #characterIcon:hover, #characterCard:hover, #characterSplash:hover {
   cursor: pointer;
-  opacity: 0.8;
+  opacity: 1;
   transition: 0.3s ease-in-out;
 }
 
@@ -240,6 +241,7 @@ button:hover {
 #characterSplash {
   width: 100%;
   overflow: hidden;
+  opacity: 0.9;
 }
 
 #constellationsBox .constellations {
@@ -291,7 +293,7 @@ button:hover {
   max-width: 100%;
   overflow-y: auto;
   padding-right: 5px;
-  max-height: 200px;
+  max-height: 130px;
 }
 
 .card-text::-webkit-scrollbar {
