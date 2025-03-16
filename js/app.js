@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function fetchInfo(){
 
-    const userInput = document.getElementById("searchPoints").value.toLocaleLowerCase();
+    const userInput = document.getElementById("characterName").value.toLocaleLowerCase();
 
     const imgElementSplash = document.getElementById("characterSplash");
     const imgElementCard = document.getElementById("characterCard");
