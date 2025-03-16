@@ -36,7 +36,7 @@ function displayCharacters(characters) {
 
     card.innerHTML = `
       <div class="card text-center">
-        <img src="https://genshin.jmp.blue/characters/${characterId}/card" class="card-img-top" alt="${character.name}">
+        <img src="https://genshin.jmp.blue/characters/hu-tao/card" class="card-img-top" alt="${character.name}">
         <div class="card-info">
           <p class="card-text">${character.name}</p>
         </div>
