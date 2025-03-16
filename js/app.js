@@ -1,3 +1,5 @@
+
+
 async function fetchInfo(){
 
     const userInput = document.getElementById("searchPoints").value.toLocaleLowerCase();
@@ -91,7 +93,7 @@ async function fetchInfo(){
     
                 const data = await response.json();
                 const characterSplash = (`https://genshin.jmp.blue/characters/${characterName}/gacha-splash`);
-                const characterCard = (`https://genshin.jmp.blue/characters/${characterName}/gacha-card`);
+                const characterCard = (`https://genshin.jmp.blue/characters/${characterName}/card`);
                 const characterIcon = (`https://genshin.jmp.blue/characters/${characterName}/icon-big`);
         
                 const imgElementSplash = document.getElementById("characterSplash");

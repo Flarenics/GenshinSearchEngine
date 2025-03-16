@@ -53,8 +53,10 @@
       <div class="col">
         <div id="userInput">
           <!-- Character/Nation/Artifact Selector -->
-          <select name="searchPoints" id="searchPoints"  onchange="this.form.submit();">
-            <option id="options" value="Character">Sort by:</option>
+          <select name="searchPoints" id="searchPoints">
+            <option value="name-asc">Sort by: Name A-Z</option>
+            <option value="name-desc">Sort by: Name Z-A</option>
+            <option value="rarity">Sort by: Rarity</option>
           </select>
     
           <div class="autocomplete">
@@ -65,6 +67,42 @@
       </div>
     </div>
   </div>
+
+  <div id="filters">
+    <select id="visionFilter" onchange="applyFilters()">
+      <option value="">All Visions</option>
+      <option value="Pyro">Pyro</option>
+      <option value="Geo">Geo</option>
+      <option value="Dendro">Dendro</option>
+      <option value="Anemo">Anemo</option>
+      <option value="Hydro">Hydro</option>
+      <option value="Cryo">Cryo</option>
+      <option value="Electro">Electro</option>
+    </select>
+
+    <select id="weaponFilter" onchange="applyFilters()">
+      <option value="">All Weapons</option>
+      <option value="Polearm">Polearm</option>
+      <option value="Sword">Sword</option>
+      <option value="Bow">Bow</option>
+      <option value="Claymore">Claymore</option>
+      <option value="Catalyst">Catalyst</option>
+    </select>
+
+    <select id="rarityFilter" onchange="applyFilters()">
+      <option value="">All Rarities</option>
+      <option value="4">4 Stars</option>
+      <option value="5">5 Stars</option>
+    </select>
+  </div>
+  
+  <select name="searchPoints" id="searchPoints">
+    <option value="name-asc">Sort by: Name A-Z</option>
+    <option value="name-desc">Sort by: Name Z-A</option>
+    <option value="rarity">Sort by: Rarity</option>
+  </select>
+
+  <div class="container" id="characterCardsContainer"></div>
 
   <!-- results -->
   <div class="container totalOutputMid" id="totalOutputMid" style="display: none;">
@@ -258,6 +296,7 @@
   </div>
 
   <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/fetchCharacters.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
