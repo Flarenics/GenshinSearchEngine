@@ -1,9 +1,42 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const dropdowns = document.querySelectorAll(".custom-dropdown");
+
+    dropdowns.forEach(dropdown => {
+        const wrapper = dropdown.closest(".select-wrapper"); // Get the parent wrapper
+        const selected = dropdown.querySelector(".dropdown-selected");
+        const options = dropdown.querySelector(".dropdown-options");
+
+        // Toggle dropdown when clicking on the wrapper instead of just the selected area
+        wrapper.addEventListener("click", function () {
+            dropdown.classList.toggle("active");
+        });
+
+        // Handle option selection
+        options.querySelectorAll("div").forEach(option => {
+            option.addEventListener("click", function () {
+                selected.textContent = this.textContent;
+                selected.setAttribute("data-value", this.getAttribute("data-value"));
+                dropdown.classList.remove("active");
+
+                applyFilters(); // Call the function whenever an option is selected
+            });
+        });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener("click", function (event) {
+        dropdowns.forEach(dropdown => {
+            if (!dropdown.closest(".select-wrapper").contains(event.target)) {
+                dropdown.classList.remove("active");
+            }
+        });
+    });
+});
 
 
 async function fetchInfo(){
 
     const userInput = document.getElementById("searchPoints").value.toLocaleLowerCase();
-    console.log(userInput);
 
     const imgElementSplash = document.getElementById("characterSplash");
     const imgElementCard = document.getElementById("characterCard");
@@ -238,8 +271,6 @@ async function fetchInfo(){
 
                 // Append the wrapper to the main container
                 constellationsContainer.appendChild(constellationsWrapper);
-
-                console.log(data);
 
                 const websiteIcon = document.getElementById("websiteIcon");
                 websiteIcon.href = characterIcon;

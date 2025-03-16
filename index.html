@@ -21,10 +21,8 @@
         </button>
       </div>
       
-      <div class="col-lg-4">
-        <div class="container">
-          <h1 class="m-auto" id="genshinSearchEngine">Genshin Search Engine</h1>
-        </div>
+      <div class="col-lg-4 d-flex align-items-center justify-content-center">
+        <h1 id="genshinSearchEngine">GENSHIN SEARCH ENGINE</h1>
       </div>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,61 +45,79 @@
     </div>
   </nav>
 
-  <!-- user input -->
+  <!-- UI and user input -->
   <div class="container" id="userInputWrapper">
     <div class="row">
-      <div class="col">
-        <div id="userInput">
-          <!-- Character/Nation/Artifact Selector -->
-          <select name="searchPoints" id="searchPoints">
-            <option value="name-asc">Sort by: Name A-Z</option>
-            <option value="name-desc">Sort by: Name Z-A</option>
-            <option value="rarity">Sort by: Rarity</option>
-          </select>
-    
+      <div class="col-7">
+        <div class="box user-input d-flex justify-content-center">
+          <!-- sorts -->
+          <div class="select-wrapper">
+            <div class="custom-dropdown" id="searchPoints">
+              <div class="dropdown-selected">Sort by: Name A-Z</div>
+              <div class="dropdown-options">
+                <div data-value="name-asc">Sort by: Name A-Z</div>
+                <div data-value="name-desc">Sort by: Name Z-A</div>
+                <!-- <div data-value="rarity">Sort by: Rarity</div> -->
+              </div>
+            </div>
+          </div>
+      
+          <!-- vision filter -->
+          <div class="select-wrapper">
+            <div class="custom-dropdown" id="visionFilter">
+              <div class="dropdown-selected">All Visions</div>
+              <div class="dropdown-options">
+                <div data-value="">All Visions</div>
+                <div data-value="Pyro">Pyro</div>
+                <div data-value="Geo">Geo</div>
+                <div data-value="Dendro">Dendro</div>
+                <div data-value="Anemo">Anemo</div>
+                <div data-value="Hydro">Hydro</div>
+                <div data-value="Cryo">Cryo</div>
+                <div data-value="Electro">Electro</div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- weapon filter -->
+          <div class="select-wrapper">
+            <div class="custom-dropdown" id="weaponFilter">
+              <div class="dropdown-selected">All Weapons</div>
+              <div class="dropdown-options">
+                <div data-value="">All Weapons</div>
+                <div data-value="Polearm">Polearm</div>
+                <div data-value="Sword">Sword</div>
+                <div data-value="Bow">Bow</div>
+                <div data-value="Claymore">Claymore</div>
+                <div data-value="Catalyst">Catalyst</div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- rarity filter -->
+          <div class="select-wrapper me-0">
+            <div class="custom-dropdown" id="rarityFilter">
+              <div class="dropdown-selected">All Rarities</div>
+              <div class="dropdown-options">
+                <div data-value="">All Rarities</div>
+                <div data-value="4">4 Stars</div>
+                <div data-value="5">5 Stars</div>
+              </div>
+            </div>
+          </div>
+      </div>
+      </div>
+      <div class="col-5">
+        <div class="box user-input">
           <div class="autocomplete">
-            <input type="text" id="characterName" placeholder="Enter name" class="search" onkeypress="search(event)">
+            <input type="text" id="characterName" placeholder="Search by name" class="search" onkeypress="search(event)">
           </div>
           <button onclick="fetchInfo()">Search</button><br>
         </div>
       </div>
     </div>
   </div>
-
-  <div id="filters">
-    <select id="visionFilter" onchange="applyFilters()">
-      <option value="">All Visions</option>
-      <option value="Pyro">Pyro</option>
-      <option value="Geo">Geo</option>
-      <option value="Dendro">Dendro</option>
-      <option value="Anemo">Anemo</option>
-      <option value="Hydro">Hydro</option>
-      <option value="Cryo">Cryo</option>
-      <option value="Electro">Electro</option>
-    </select>
-
-    <select id="weaponFilter" onchange="applyFilters()">
-      <option value="">All Weapons</option>
-      <option value="Polearm">Polearm</option>
-      <option value="Sword">Sword</option>
-      <option value="Bow">Bow</option>
-      <option value="Claymore">Claymore</option>
-      <option value="Catalyst">Catalyst</option>
-    </select>
-
-    <select id="rarityFilter" onchange="applyFilters()">
-      <option value="">All Rarities</option>
-      <option value="4">4 Stars</option>
-      <option value="5">5 Stars</option>
-    </select>
-  </div>
   
-  <select name="searchPoints" id="searchPoints">
-    <option value="name-asc">Sort by: Name A-Z</option>
-    <option value="name-desc">Sort by: Name Z-A</option>
-    <option value="rarity">Sort by: Rarity</option>
-  </select>
-
   <div class="container" id="characterCardsContainer"></div>
 
   <!-- results -->

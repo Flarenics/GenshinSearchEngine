@@ -1,13 +1,13 @@
 @font-face {
   font-family: 'Montserrat';
-  src: url('fonts/Montserrat.ttf');
+  src: url('../fonts/Montserrat.ttf');
   font-weight: 100 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('fonts/Montserrat-Italic.ttf');
+  src: url('../fonts/Montserrat-Italic.ttf');
   font-weight: 100 900;
   font-style: italic;
 }
@@ -20,7 +20,7 @@
 }
 
 body {
-  background-color: #1C1719;
+  background-color: #141012;
 }
 
 button {
@@ -28,10 +28,25 @@ button {
   font-weight: 600;
 }
 
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.select-wrapper::after {
+  content: "▼";
+  font-size: 14px;
+  position: absolute;
+  right: 20px;
+  top: 47%;
+  transform: translateY(-50%);
+}
+
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 99;
+  z-index: 999;
   background-color: #22223B;
   height: 64px;
   padding: 8px;
@@ -59,7 +74,6 @@ button:hover {
   transition: 0.3s ease-in-out;;
 }
 
-/* === Flarenics Button Animation (Final, Perfectly Sized Version) === */
 .flarenics {
   --border-right: 5px;
   --animation-color: #FF6532;
@@ -69,13 +83,12 @@ button:hover {
   position: relative;
   text-transform: uppercase;
   cursor: pointer;
-  padding: 12px 24px; /* Adjust padding for better button size */
-  min-width: 172px; /* Ensure button is wide enough */
-  min-height: 30px; /* Ensure button is tall enough */
-  overflow: hidden; /* Prevent text shifting */
+  padding: 12px 24px;
+  min-width: 172px;
+  min-height: 30px;
+  overflow: hidden;
 }
 
-/* Ensure the text layers overlap perfectly */
 .actual-text, .hover-text {
   position: absolute;
   inset: 0;
@@ -86,20 +99,17 @@ button:hover {
   background-color: #22223B;
 }
 
-/* Hover animation text */
 .hover-text {
   color: var(--animation-color);
   width: 100%;
   border-right: var(--border-right) solid var(--animation-color);
   overflow: hidden;
   transition: clip-path 0.5s ease-in-out;
-  clip-path: inset(0 100% 0 0); /* Initially hidden */
-  /* -webkit-text-stroke: 1px var(--animation-color); */
+  clip-path: inset(0 100% 0 0);
   margin-left: 2px;
   transition: 0.3s ease-in-out;
 }
 
-/* Hover effect (clip-path expands) */
 .flarenics:hover .hover-text {
   clip-path: inset(0 0 0 0);
   transition: 0.3s ease-in-out;
@@ -143,47 +153,36 @@ button:hover {
   color: #ffffff;
 }
 
-.outputImagesArt {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 30px;
-  border: 1px;
-}
-
 #userInputWrapper {
   text-align: center;
   margin: 24px auto;
 }
 
-#userInput {
+.user-input {
   display: inline-block;
   width: 100%;
   padding: 16px;
-  border: 1px solid rgb(255, 255, 255, 0.08);
-  border-radius: 8px;
-  background: rgb(255, 255, 255, 0.03);
 }
 
-#userInput button {
+.user-input button {
   border-radius: 100px;
 }
 
-#searchPoints {
-  background-color: #1C1719;
+.select-wrapper {
+  background-color: #141012;
   border: none;
-  padding: 10px 16px 11px 16px;
+  padding: 10px 26px 11px 26px;
   border-radius: 100px;
-  margin-right: 16px;
+  margin-right: 12px;
 }
 
 #characterName {
-  background-color: #1C1719;
+  background-color: #141012;
   border: none;
-  padding: 8px 16px 8px 16px;
+  padding: 11px 16px 10px 16px;
   border-radius: 100px;
   margin-right: 16px;
-  min-width: 280px;
+  min-width: 354px;
 }
 
 #characterName:hover, #characterName:focus, #searchPoints:hover, #searchPoints:focus {
@@ -193,23 +192,15 @@ button:hover {
 }
 
 #options {
-  color: white;
+  color: rgb(255, 255, 255);
   font-size: medium;
 }
 
 #genshinSearchEngine {
-  display: flex;
-  justify-content: center;
-  border-radius: 21px;
-  width: fit-content;
-  height: 42px; 
-  background-color: rgb(0, 0, 0, 0.2);
-  padding: 0px 42px 0px 42px;
-  font-size: 28px;
-  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 0;
   transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-  transform: translate;
-  font-weight: 600;
 }
 
 #charRarityImage {
@@ -261,16 +252,36 @@ button:hover {
 }
 
 .card {
-  background-color: rgb(0, 0, 0, 0.2);
-  width: 18rem;
-  height: 18rem;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
-  transition: background-color 0.3s ease-out, transform 0.3s ease-out;
+  transition: background-color 0.2s ease-out, transform 0.2s ease-out;
+  height: fit-content;
+  border: none;
+  cursor: pointer;
+}
+
+.card-info {
+  position: absolute;
+  /* border-bottom: 8px solid yellow; */
+  /* background: linear-gradient(to top, rgba(255, 255, 0, 0.2), transparent);
+  height: 25%; */
+  width: 100%;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+}
+
+.card-img-top {
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  margin: auto;
 }
 
 .card-title {
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .constellation-entry1, .constellation-entry2, .constellation-entry3, .constellation-entry4, .constellation-entry5, .constellation-entry6 {
@@ -288,12 +299,9 @@ button:hover {
 }
 
 .card-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-  overflow-y: auto;
-  padding-right: 5px;
-  max-height: 130px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0px 0px 10px black;
 }
 
 .card-text::-webkit-scrollbar {
@@ -310,13 +318,7 @@ button:hover {
 }
 
 .card:hover {
-  background-color: rgb(0, 0, 0, 0.1);
-  width: 18rem;
-  height: 18rem;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-top: 4px;
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
 #charConstShape {
@@ -339,63 +341,56 @@ button:hover {
   background-color: #000000;
 }
 
-/* Autocomplete container styling */
 .autocomplete {
   position: relative;
   display: inline-block;
   width: auto;
 }
 
-/* Autocomplete items container styling */
 .autocomplete-items {
   position: absolute;
-  border: 1px solid #1c1719;
-  border-bottom: none;
-  border-top: none;
+  border: 1px solid rgb(255, 255, 255, 0.1);
   z-index: 99;
-  /* Match the width of the search box */
   width: 95%;
-  top: 100%;
+  top: calc(100% + 8px);
   left: 0;
   right: 0;
-  background-color: #1c1719;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow */
-  border-radius: 15px; /* Add rounded corners to the container */
+  background-color: #141012;
+  box-shadow: 0px 8px 32px #141012;
+  border-radius: 8px;
 }
 
-/* Individual autocomplete item styling */
 .autocomplete-items div {
-  padding: 10px 16px; /* Adjust padding for better alignment */
+  padding: 10px 16px;
   cursor: pointer;
-  background-color: #1c1719;
+  background-color: #141012;
   color: #e3e4db;
-  border-bottom: 1px solid #333;
   text-align: left;
-  display: block; /* Use flexbox for alignment */
-  align-items: center; /* Center align items vertically */
+  display: block;
+  align-items: center;
+  transition: background 0.1s;
 }
 
-/* Round top corners of the first item */
+.autocomplete-items div:not(:last-child) {
+  border-bottom: 1px solid rgb(255, 255, 255, 0.1);
+}
+
 .autocomplete-items div:first-child {
-  border-radius: 15px 15px 0 0; 
+  border-radius: 8px 8px 0 0; 
 }
 
-/* Round bottom corners of the last item */
 .autocomplete-items div:last-child {
-  border-radius: 0 0 15px 15px; 
+  border-radius: 0 0 8px 8px; 
 }
 
-/* Round all corners if only one element */
 .autocomplete-items div:only-child {
-  border-radius: 15px; 
+  border-radius: 8px; 
 }
 
-/* Hover effect for autocomplete items */
 .autocomplete-items div:hover {
-  background-color: #333;
+  background-color: rgb(255, 255, 255, 0.05);
 }
 
-/* Active item styling when navigating with arrow keys */
 .autocomplete-active {
   background-color: #444 !important;
   color: #ffffff;
@@ -414,30 +409,53 @@ button:hover {
   margin: 8px;
 }
 
-.character-card {
-  width: 150px; /* Adjust the width as needed */
-  height: 250px; /* Adjust the height as needed to fit the image and text */
-  margin: 10px; /* Adjust the margin as needed */
-  padding: 10px; /* Adjust the padding as needed */
-  border: 1px solid #ccc; /* Optional: Add a border */
-  border-radius: 5px; /* Optional: Add rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
-  text-align: center; /* Center the text */
-  overflow: hidden; /* Hide overflow content */
-  background-color: #1c1719; /* Optional: Add background color */
-}
-
 #characterCardsContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Center the cards horizontally */
-  gap: 20px; /* Adjust the gap between cards */
-  padding: 20px; /* Add padding around the container */
+  justify-content: center;
+  gap: 20px;
 }
 
-.character-card img {
-  width: 100%; /* Make the image take the full width of the card */
-  height: 100%; /* Make the image take the full height of the card */
-  object-fit: cover; /* Ensure the image covers the area without stretching */
-  border-radius: 5px; /* Optional: Add rounded corners */
+#characterCardsContainer .row {
+  padding: 24px 12px;
+}
+
+.custom-dropdown {
+  position: relative;
+  padding-right: 12px;
+  border-radius: 8px;
+  user-select: none;
+  z-index: 99;
+}
+
+.dropdown-options {
+  position: absolute;
+  background: #141012;
+  border: 1px solid rgb(255, 255, 255, 0.1);
+  overflow: hidden;
+  top: calc(100% + 19px);
+  left: -26px;
+  width: calc(100% + 52px);
+  border-radius: 8px;
+  display: none;
+  text-align: left;
+  box-shadow: 0px 8px 32px #141012;
+}
+
+.dropdown-options div {
+  cursor: pointer;
+  padding: 10px 16px;
+  transition: background 0.1s;
+}
+
+.dropdown-options div:not(:last-child) {
+  border-bottom: 1px solid rgb(255, 255, 255, 0.1);
+}
+
+.dropdown-options div:hover {
+  background: rgb(255, 255, 255, 0.05);;
+}
+
+.custom-dropdown.active .dropdown-options {
+  display: block;
 }
