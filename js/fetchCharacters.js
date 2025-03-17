@@ -14,6 +14,7 @@ async function fetchCharacters(filters = {}) {
   try {
     const response = await fetch(url);
     const characters = await response.json();
+    console.log("Fetched characters:", characters);
     displayCharacters(characters);
   } catch (error) {
     console.error('Error fetching character data:', error);
@@ -30,9 +31,15 @@ function displayCharacters(characters) {
   row.className = 'row box w-100 d-flex justify-content-center'; // bootstrap row class
 
   characters.forEach(character => {
+    console.log("Character:", character);
+    if (typeof character.name !== 'string') {
+      console.error("Invalid character name:", character);
+      return;
+    }
     const card = document.createElement('div');
     card.className = 'col-lg-2 col-md-4 col-sm-6 mb-4 card-container'; // Responsive grid (6 per row on large screens)
-    const characterId = character.id.toLowerCase().replace(/\s+/g, '-');
+    const characterId = character.name.toLocaleLowerCase().replace(/\s+/g, '-');
+    const characterInitial = character.name.charAt(0).toUpperCase();
 
     card.innerHTML = `
       <div class="card text-center">
@@ -42,12 +49,18 @@ function displayCharacters(characters) {
         </div>
       </div>
     `;
-    
+
+    // Add click event listener to navigate to character's HTML file
+    card.addEventListener('click', () => {
+      window.location.href = `charPages/${characterInitial}/${characterId}.html`;
+    });
+
     row.appendChild(card);
   });
 
   container.appendChild(row); // Append the row to the container
 }
+
 function applyFilters() {
   function getFilterValue(filterId) {
     const selectedElement = document.querySelector(`#${filterId} .dropdown-selected`);
@@ -94,8 +107,8 @@ function sortCharacters(criteria) {
   const cards = Array.from(container.getElementsByClassName('card-container'));
 
   cards.sort((a, b) => {
-    const nameA = a.querySelector('p').textContent.trim().toLowerCase();
-    const nameB = b.querySelector('p').textContent.trim().toLowerCase();
+    const nameA = a.querySelector('p').textContent.trim().toLocaleLowerCase();
+    const nameB = b.querySelector('p').textContent.trim().toLocaleLowerCase();
 
     if (criteria === 'name-asc') {
       return nameA.localeCompare(nameB);

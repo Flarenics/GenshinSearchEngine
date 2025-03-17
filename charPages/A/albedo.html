@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genshin Search</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <link rel="website icon" type="png" href="https://genshin.jmp.blue/characters/hu-tao/icon" id="websiteIcon">
+</head>
+<body>
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg" style="background: #22223B;">
+    <div class="container">
+      <div class="col-lg-4 d-flex">
+        <img class="logo" src="https://genshin.jmp.blue/characters/hu-tao/icon" id="FlarenicsIcon" alt="Flarenics Icon">
+        <!-- funny button -->
+        <button class="flarenics" data-text="Flarenics">
+          <span class="actual-text">&nbsp;Flarenics&nbsp;</span>
+          <span aria-hidden="true" class="hover-text">&nbsp;Akshiro&nbsp;</span>
+        </button>
+      </div>
+      
+      <div class="col-lg-4 d-flex align-items-center justify-content-center">
+        <h1 id="genshinSearchEngine">GENSHIN SEARCH ENGINE</h1>
+      </div>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="col-lg-4">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a href="https://github.com/Flarenics/GenshinSearchEngine/" target="_blank">
+                <button id="githubButton">
+                  <img src="images\GithubLogo.png" alt="github logo" id="githubLogo">
+                </button>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- UI and user input -->
+  <div class="container" id="userInputWrapper">
+    <div class="row">
+      <div class="col-7">
+        <div class="box user-input d-flex justify-content-center">
+          <!-- sorts -->
+          <div class="select-wrapper">
+            <div class="custom-dropdown" id="searchPoints">
+              <div class="dropdown-selected">Sort by: Name A-Z</div>
+              <div class="dropdown-options">
+                <div data-value="name-asc">Sort by: Name A-Z</div>
+                <div data-value="name-desc">Sort by: Name Z-A</div>
+                <!-- <div data-value="rarity">Sort by: Rarity</div> -->
+              </div>
+            </div>
+          </div>
+      
+          <!-- vision filter -->
+          <div class="select-wrapper">
+            <div class="custom-dropdown" id="visionFilter">
+              <div class="dropdown-selected">All Visions</div>
+              <div class="dropdown-options">
+                <div data-value="">All Visions</div>
+                <div data-value="Pyro">Pyro</div>
+                <div data-value="Geo">Geo</div>
+                <div data-value="Dendro">Dendro</div>
+                <div data-value="Anemo">Anemo</div>
+                <div data-value="Hydro">Hydro</div>
+                <div data-value="Cryo">Cryo</div>
+                <div data-value="Electro">Electro</div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- weapon filter -->
+          <div class="select-wrapper">
+            <div class="custom-dropdown" id="weaponFilter">
+              <div class="dropdown-selected">All Weapons</div>
+              <div class="dropdown-options">
+                <div data-value="">All Weapons</div>
+                <div data-value="Polearm">Polearm</div>
+                <div data-value="Sword">Sword</div>
+                <div data-value="Bow">Bow</div>
+                <div data-value="Claymore">Claymore</div>
+                <div data-value="Catalyst">Catalyst</div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- rarity filter -->
+          <div class="select-wrapper me-0">
+            <div class="custom-dropdown" id="rarityFilter">
+              <div class="dropdown-selected">All Rarities</div>
+              <div class="dropdown-options">
+                <div data-value="">All Rarities</div>
+                <div data-value="4">4 Stars</div>
+                <div data-value="5">5 Stars</div>
+              </div>
+            </div>
+          </div>
+      </div>
+      </div>
+      <div class="col-5">
+        <div class="box user-input">
+          <div class="autocomplete">
+            <input type="text" id="characterName" placeholder="Search by name" class="search" onkeypress="search(event)">
+          </div>
+          <button onclick="fetchInfo()">Search</button><br>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container" id="characterCardsContainer"></div>
+
+  <!-- results -->
+  <div class="container totalOutputMid" id="totalOutputMid" style="display: none;">
+    <div class="row">
+      <div class="col-lg-2 d-flex flex-column">
+        <!-- first row (character card) -->
+        <div class="row mb-2">
+          <div class="col">
+            <img src="images\cardPlaceholder.png" alt="leftImage" id="characterCard">
+          </div>
+        </div>
+      
+        <!-- second row (affiliation) -->
+        <div class="row mt-3 flex-grow-1 d-flex align-items-center">
+          <div class="col h-100">
+            <div class="box d-flex text-center h-100">
+              <p class="m-auto" id="charAffiliation" style="font-weight: 700; font-style: italic;"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-10">
+        <div class="row h-100">
+          <div class="col-lg-5">
+            <div class="outputText box p-4 h-100">
+              <div class="row">
+                <div class="col">
+                  <img id="charNamecardImage" src="" alt=" Namecard">
+                </div>
+              </div>
+
+              <!-- name -->
+              <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p style="font-weight: 600;">Name</p>
+                </div>
+    
+                <div class="col-8">
+                  <p id="charName"></p>
+                </div>
+              </div>
+
+              <!-- rarity -->
+              <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p>Rarity</p>
+                </div>
+
+                <div class="col-8">
+                  <div id="charRarityWrapper">
+                    <div id="charRarityImageWrapper" class="d-flex align-items-center">
+                      <img id="charRarityImage" src="images\elements\Hydro.svg" alt="">
+                      <p class="ms-2" id="charRarity"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- element -->
+              <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p>Element</p>
+                </div>
+    
+                <div class="col-8">
+                  <div id="charVisionWrapper" class="d-flex align-items-center">
+                    <img id="charVisionImage" src="" alt="">
+                    <p class="ms-2" id="charVision"></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- weapon -->
+              <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p>Weapon</p>
+                </div>
+
+                <div class="col-8">
+                  <div id="charWeaponWrapper" class="d-flex align-items-center">
+                    <img id="charWeaponImage" src="" alt="">
+                    <p class="ms-2" id="charWeapon"></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- nation -->
+              <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p>Nation</p>
+                </div>
+
+                <div class="col-8">
+                  <div id="charNationWrapper" class="d-flex align-items-center">
+                    <img id="charNationImage" src="" alt="">
+                    <p class="ms-2" id="charNation"></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- gender -->
+              <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p>Gender</p>
+                </div>
+
+                <div class="col-8">
+                  <div id="charGenderWrapper" class="d-flex align-items-center">
+                    <p id="charGender"></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- birthday -->
+              <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p>Birthday</p>
+                </div>
+
+                <div class="col-8">
+                  <div id="charBirthdayWrapper" class="d-flex align-items-center">
+                    <p id="charBirthday"></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- release date -->
+              <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p>Release Date</p>
+                </div>
+
+                <div class="col-8">
+                  <div id="charReleaseDateWrapper" class="d-flex align-items-center">
+                    <p id="charReleaseDate"></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- affiliation -->
+              <!-- <div class="row">
+                <div class="col-4 d-flex align-items-center">
+                  <p>Affiliation</p>
+                </div>
+
+                <div class="col-8">
+                  <div id="charAffiliation" class="d-flex align-items-center">
+                    <img id="charAffiliation" src="" alt="">
+                    <p id="charAffiliation"></p>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+  
+          <div class="col-lg-7">
+            <div class="titleDescWrap box p-4">
+              <p id="charTitle"></p>
+              <p id="charDesc"></p>
+            </div>
+
+            <div class="row mt-4">
+              <div class="col">
+                <img class="box" src="images\splashPlaceholder.png" alt="rightImage" id="characterSplash" crossorigin>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-4 mb-4 w-100" id="constellationsBox" style="display: none;">
+    <!-- constellation -->
+    <div class="row">
+      <div class="col">
+        <div class="box p-4" id="charConstellations"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-4" id="noSearchResult" style="display: none;">
+    <div class="row">
+      <div class="col">
+        <div class="box p-4">
+          <p class="mb-0 text-center" style="font-style: italic; font-weight: 700;">Hmm... no matches found. Maybe try a different keyword?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/fetchCharacters.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
