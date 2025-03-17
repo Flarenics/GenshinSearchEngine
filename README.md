@@ -1,5 +1,7 @@
 TODO:
 
+test
+
 create talent section
 
 main page layout with character chart/grid
