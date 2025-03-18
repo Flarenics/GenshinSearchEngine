@@ -40,10 +40,11 @@ function displayCharacters(characters) {
     card.className = 'col-lg-2 col-md-4 col-sm-6 mb-4 card-container'; // Responsive grid (6 per row on large screens)
     const characterId = character.name.toLocaleLowerCase().replace(/\s+/g, '-');
     const characterInitial = character.name.charAt(0).toUpperCase();
+    const characterImageName = character.name.replace(/\s+/g, '_') + '_Card.png';
 
     card.innerHTML = `
       <div class="card text-center">
-        <img src="https://genshin.jmp.blue/characters/hu-tao/card" class="card-img-top" alt="${character.name}">
+        <img src="images/cards/${characterImageName}" class="card-img-top" alt="${character.name}">
         <div class="card-info">
           <p class="card-text">${character.name}</p>
         </div>
