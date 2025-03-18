@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchCharacters();
 });
 
-let sortType = 'name-asc'; //defaulted to ascending
+let sortType = 'name-asc';
 
 async function fetchCharacters(filters = {}) {
   let url = 'https://genshin.jmp.blue/characters/all';
@@ -28,7 +28,7 @@ function displayCharacters(characters) {
   container.innerHTML = '';
 
   const row = document.createElement('div');
-  row.className = 'row box w-100 d-flex justify-content-center'; // bootstrap row class
+  row.className = 'row box w-100 d-flex justify-content-center';
 
   characters.forEach(character => {
     console.log("Character:", character);
@@ -37,9 +37,9 @@ function displayCharacters(characters) {
       return;
     }
     const card = document.createElement('div');
-    card.className = 'col-lg-2 col-md-4 col-sm-6 mb-4 card-container'; // Responsive grid (6 per row on large screens)
+    card.className = 'col-lg-2 col-md-4 col-sm-6 mb-4 card-container';
     const characterId = character.name.toLocaleLowerCase().replace(/\s+/g, '-');
-    const characterInitial = character.name.charAt(0).toUpperCase();
+    const characterInitial = character.name.charAt(0).toLowerCase();
     const characterImageName = character.name.replace(/\s+/g, '_') + '_Card.png';
 
     card.innerHTML = `
@@ -51,15 +51,14 @@ function displayCharacters(characters) {
       </div>
     `;
 
-    // Add click event listener to navigate to character's HTML file
     card.addEventListener('click', () => {
-      window.location.href = `charPages/${characterInitial}/${characterId}.html`;
+      window.location.href = `pages/${characterInitial}/${characterId}.html`;
     });
 
     row.appendChild(card);
   });
 
-  container.appendChild(row); // Append the row to the container
+  container.appendChild(row);
 }
 
 function applyFilters() {
@@ -80,8 +79,8 @@ function applyFilters() {
 
   filterKeys.forEach((key) => {
     const value = getFilterValue(key);
-    if (value) {  // Only add non-empty values
-      const mappedKey = key.replace("Filter", ""); // Map visionFilter -> vision, weaponFilter -> weapon
+    if (value) {
+      const mappedKey = key.replace("Filter", "");
       filters[mappedKey] = value;
     }
   });
@@ -94,10 +93,10 @@ function applyFilters() {
 document.querySelectorAll("#searchPoints .dropdown-options div").forEach(option => {
   option.addEventListener("click", function () {
     const selectedElement = document.querySelector("#searchPoints .dropdown-selected");
-    selectedElement.textContent = this.textContent; // Update displayed value
-    selectedElement.setAttribute("data-value", this.getAttribute("data-value")); // Store value
+    selectedElement.textContent = this.textContent;
+    selectedElement.setAttribute("data-value", this.getAttribute("data-value"));
 
-    const criteria = this.getAttribute("data-value"); // Get sorting criteria
+    const criteria = this.getAttribute("data-value");
     sortType = criteria;
     sortCharacters(criteria);
   });
@@ -116,22 +115,13 @@ function sortCharacters(criteria) {
     } else if (criteria === 'name-desc') {
       return nameB.localeCompare(nameA);
     } 
-    // else if (criteria === 'rarity') {
-    //   const rarityA = parseInt(a.dataset.rarity);
-    //   const rarityB = parseInt(b.dataset.rarity);
-
-    //   console.log(rarityA);
-    //   console.log(rarityB);
-    //   return rarityB - rarityA; // Higher rarity first
-    // }
-
-    return 0; // No sorting change if invalid criteria
+    return 0;
   });
 
-  container.innerHTML = ''; // Clear container before re-adding sorted elements
+  container.innerHTML = '';
 
   const row = document.createElement('div');
-  row.className = 'row box w-100 d-flex justify-content-center'; // bootstrap row class
+  row.className = 'row box w-100 d-flex justify-content-center';
 
   container.appendChild(row);
   cards.forEach(card => row.appendChild(card));

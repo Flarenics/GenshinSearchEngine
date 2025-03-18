@@ -20,7 +20,8 @@
 }
 
 body {
-  background-color: #141012;
+  background-color: #13171F;
+  display: flex;
 }
 
 button {
@@ -169,7 +170,7 @@ button:hover {
 }
 
 .select-wrapper {
-  background-color: #141012;
+  background-color: #13171F;
   border: none;
   padding: 10px 26px 11px 26px;
   border-radius: 100px;
@@ -177,7 +178,7 @@ button:hover {
 }
 
 #characterName {
-  background-color: #141012;
+  background-color: #13171F;
   border: none;
   padding: 11px 16px 10px 16px;
   border-radius: 100px;
@@ -355,15 +356,15 @@ button:hover {
   top: calc(100% + 8px);
   left: 0;
   right: 0;
-  background-color: #141012;
-  box-shadow: 0px 8px 32px #141012;
+  background-color: #13171F;
+  box-shadow: 0px 8px 32px #13171F;
   border-radius: 8px;
 }
 
 .autocomplete-items div {
   padding: 10px 16px;
   cursor: pointer;
-  background-color: #141012;
+  background-color: #13171F;
   color: #e3e4db;
   text-align: left;
   display: block;
@@ -430,7 +431,7 @@ button:hover {
 
 .dropdown-options {
   position: absolute;
-  background: #141012;
+  background: #13171F;
   border: 1px solid rgb(255, 255, 255, 0.1);
   overflow: hidden;
   top: calc(100% + 19px);
@@ -439,7 +440,7 @@ button:hover {
   border-radius: 8px;
   display: none;
   text-align: left;
-  box-shadow: 0px 8px 32px #141012;
+  box-shadow: 0px 8px 32px #13171F;
 }
 
 .dropdown-options div {
