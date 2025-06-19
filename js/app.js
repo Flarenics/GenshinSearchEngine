@@ -1,3 +1,4 @@
+// Initialise dropdown behaviour once the DOM is ready
 document.addEventListener("DOMContentLoaded", function () {
     const dropdowns = document.querySelectorAll(".custom-dropdown");
 
@@ -33,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// Fetch basic info for the character typed into the search bar
 async function fetchInfo() {
     const userInput = document.getElementById("characterName").value.toLowerCase().replace(/\s+/g, '-');
     console.log("User input:", userInput);
@@ -66,6 +68,7 @@ async function fetchInfo() {
     }
 }
 
+// Trigger search when enter key is pressed
 function search(event) {
     let value = event.which;
     if (value === 13) {
@@ -77,7 +80,7 @@ function search(event) {
     }
 }
 
-// Event listener for DOM content loaded to fetch character list and initialize autocomplete
+// Fetch character list and initialise autocomplete suggestions
 document.addEventListener("DOMContentLoaded", async function () {
     let characterList = [];
     try {

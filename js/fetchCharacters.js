@@ -1,9 +1,12 @@
+// Fetch character list as soon as the page loads
 document.addEventListener('DOMContentLoaded', () => {
   fetchCharacters();
 });
 
+// Current sort option
 let sortType = 'name-asc';
 
+// Retrieve character data from the API and display the results
 async function fetchCharacters(filters = {}) {
   let url = 'https://genshin.jmp.blue/characters/all';
   const params = new URLSearchParams(filters);
@@ -24,12 +27,14 @@ async function fetchCharacters(filters = {}) {
 }
 
 function displayCharacters(characters) {
+  // Container for character cards
   const container = document.getElementById('characterCardsContainer');
   container.innerHTML = '';
 
   const row = document.createElement('div');
   row.className = 'row box w-100 d-flex justify-content-center';
 
+  // Build a card for each character returned
   characters.forEach(character => {
     console.log("Character:", character);
     if (typeof character.name !== 'string') {
@@ -51,6 +56,7 @@ function displayCharacters(characters) {
       </div>
     `;
 
+    // Navigate to the dedicated page on click
     card.addEventListener('click', () => {
       window.location.href = `pages/${characterInitial}/${characterId}.html`;
     });
@@ -61,7 +67,9 @@ function displayCharacters(characters) {
   container.appendChild(row);
 }
 
+// Apply all dropdown filter selections
 function applyFilters() {
+  // Helper to read the selected value from a custom dropdown
   function getFilterValue(filterId) {
     const selectedElement = document.querySelector(`#${filterId} .dropdown-selected`);
     if (!selectedElement) return "";
@@ -90,6 +98,7 @@ function applyFilters() {
   fetchCharacters(filters);
 }
 
+// Change sort option when the user picks from dropdown
 document.querySelectorAll("#searchPoints .dropdown-options div").forEach(option => {
   option.addEventListener("click", function () {
     const selectedElement = document.querySelector("#searchPoints .dropdown-selected");
@@ -102,6 +111,7 @@ document.querySelectorAll("#searchPoints .dropdown-options div").forEach(option 
   });
 });
 
+// Sort the cards currently displayed
 function sortCharacters(criteria) {
   const container = document.getElementById('characterCardsContainer');
   const cards = Array.from(container.getElementsByClassName('card-container'));

@@ -160,8 +160,12 @@ button:hover {
   margin: 24px auto;
 }
 
+
 .user-input {
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
   width: 100%;
   padding: 16px;
 }
@@ -175,7 +179,7 @@ button:hover {
   border: none;
   padding: 10px 26px 11px 26px;
   border-radius: 100px;
-  margin-right: 12px;
+  margin: 4px;
 }
 
 #characterName {
